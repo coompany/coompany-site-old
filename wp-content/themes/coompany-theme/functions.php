@@ -154,3 +154,43 @@ function register_my_custom_post_type() {
 }
 
 add_action('init', 'register_my_custom_post_type');
+
+
+//	# CUSTOM TAXONOMIES
+function create_my_taxonomies() {
+
+	//	prodotti
+	register_taxonomy(
+		'prodotti',
+		'features',
+		array(
+			'labels' => array(
+				'name' => 'Prodotto',
+				'add_new_item' => 'Aggiungi Nuovo Prodotto',
+				'new_item_name' => "Nuovo Prodotto"
+			),
+			'show_ui' => true,
+			'show_tagcloud' => false,
+			'hierarchical' => true
+		)
+	);
+
+	//	news-topic
+	register_taxonomy(
+		'news-topic',
+		'news',
+		array(
+			'labels' => array(
+				'name' => 'Topic',
+				'add_new_item' => 'Aggiungi Nuovo Topic',
+				'new_item_name' => "Nuovo Topic"
+			),
+			'show_ui' => true,
+			'show_tagcloud' => false,
+			'hierarchical' => true
+		)
+	);
+
+}
+
+add_action( 'init', 'create_my_taxonomies', 0 );
