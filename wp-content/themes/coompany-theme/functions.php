@@ -194,3 +194,12 @@ function create_my_taxonomies() {
 }
 
 add_action( 'init', 'create_my_taxonomies', 0 );
+
+
+//	# INCLUDE SCRIPTS
+function enqueue_conditional_scripts() {
+	wp_enqueue_script('jQuery');
+	wp_enqueue_script('bootstrap',  get_template_directory_uri().'/js/vendor/bootstrap/bootstrap.min.js', array('jQuery'));
+}
+
+add_action('wp_enqueue_scripts', 'enqueue_conditional_scripts');
