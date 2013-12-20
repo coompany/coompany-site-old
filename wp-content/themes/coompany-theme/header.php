@@ -47,3 +47,9 @@
 	<body>
 
 		<div class="container">
+
+			<?php
+			if(!is_home()) {
+				echo get_template_part('navbar');
+			}
+			?>

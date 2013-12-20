@@ -4,3 +4,72 @@
 
 @import "./vendor/bootstrap/bootstrap.less";
 
+body {
+
+  padding-top: 60px;
+  padding-bottom: 30px;
+
+  & > .container {
+
+    .navbar {
+
+      .navbar-header {
+        .navbar-brand {
+          img {
+            width: 100px;
+          }
+        }
+      }
+
+      #menu-row {
+        display: flex;
+        border-top: 2px solid #000000;
+        .nav.navbar-nav {
+          margin: 0 auto;
+          & > li {
+            margin: 0px 32px;
+            a {
+              color: #000000;
+              font-size: 14px;
+            }
+            ul.dropdown-menu {
+              background-color: #000000;
+              padding: 0px;
+              border-width: 0px;
+              li {
+                margin-bottom: 8px;
+                a {
+                  margin: 0px;
+                  color: #ffffff;
+                  font-weight: 300;
+                  padding: 0px 18px;
+                }
+              }
+              li.active, li a:hover {
+                background-color: lighten(#000000, 20%);
+                color: #ffffff;
+              }
+              li.menu {
+                line-height: 6px;
+                width: 110%;
+                background-color: #000000;
+                position: relative;
+                left: -16px;
+                margin-bottom: 0px;
+                border-radius: 16px;
+              }
+            }
+          }
+        }
+      }
+
+    }
+
+    & > .jumbotron {
+      margin: 30px auto;
+      max-width: 800px;
+    }
+
+  }
+
+}

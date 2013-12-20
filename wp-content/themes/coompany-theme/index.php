@@ -10,6 +10,10 @@
 echo get_header();
 ?>
 
-			<h1>Coompany's home page</h1>
+			<div class="jumbotron">
+				<h1>Welcome!</h1>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam augue dolor, malesuada vitae ullamcorper vitae, interdum in tortor. Maecenas id placerat diam, ut accumsan tortor.</p>
+				<?php echo get_template_part('navbar'); ?>
+			</div>
 
 <?php echo get_footer(); ?>

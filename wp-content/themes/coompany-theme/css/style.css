@@ -5957,3 +5957,56 @@ td.visible-print {
     display: none !important;
   }
 }
+body {
+  padding-top: 60px;
+  padding-bottom: 30px;
+}
+body > .container .navbar .navbar-header .navbar-brand img {
+  width: 100px;
+}
+body > .container .navbar #menu-row {
+  display: flex;
+  border-top: 2px solid #000000;
+}
+body > .container .navbar #menu-row .nav.navbar-nav {
+  margin: 0 auto;
+}
+body > .container .navbar #menu-row .nav.navbar-nav > li {
+  margin: 0px 32px;
+}
+body > .container .navbar #menu-row .nav.navbar-nav > li a {
+  color: #000000;
+  font-size: 14px;
+}
+body > .container .navbar #menu-row .nav.navbar-nav > li ul.dropdown-menu {
+  background-color: #000000;
+  padding: 0px;
+  border-width: 0px;
+}
+body > .container .navbar #menu-row .nav.navbar-nav > li ul.dropdown-menu li {
+  margin-bottom: 8px;
+}
+body > .container .navbar #menu-row .nav.navbar-nav > li ul.dropdown-menu li a {
+  margin: 0px;
+  color: #ffffff;
+  font-weight: 300;
+  padding: 0px 18px;
+}
+body > .container .navbar #menu-row .nav.navbar-nav > li ul.dropdown-menu li.active,
+body > .container .navbar #menu-row .nav.navbar-nav > li ul.dropdown-menu li a:hover {
+  background-color: #333333;
+  color: #ffffff;
+}
+body > .container .navbar #menu-row .nav.navbar-nav > li ul.dropdown-menu li.menu {
+  line-height: 6px;
+  width: 110%;
+  background-color: #000000;
+  position: relative;
+  left: -16px;
+  margin-bottom: 0px;
+  border-radius: 16px;
+}
+body > .container > .jumbotron {
+  margin: 30px auto;
+  max-width: 800px;
+}
