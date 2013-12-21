@@ -5959,7 +5959,6 @@ td.visible-print {
 }
 body {
   padding-top: 120px;
-  padding-bottom: 30px;
   background-color: #FCFCFC;
 }
 body > .container .navbar .navbar-header .navbar-brand img {
@@ -6035,6 +6034,16 @@ body > .container #section-products .feature .media-content img,
 body > .container #section-products .feature .media-content iframe {
   max-width: 90%;
   max-height: 50%;
+}
+body > .container footer {
+  background-color: #333333;
+  color: #999999;
+  font-weight: 300;
+  padding: 40px 0px;
+}
+body > .container footer a {
+  color: #666666;
+  font-size: 12px;
 }
 img {
   max-width: 100%;
