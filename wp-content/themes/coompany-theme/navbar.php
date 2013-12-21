@@ -8,10 +8,10 @@
  */
 ?>
 
-<nav class="navbar">
+<nav class="navbar<?php echo((is_home()) ? (null) : (' navbar-default navbar-fixed-top')); ?>">
 	<div class="row">
 		<div class="navbar-header">
-			<a class="navbar-brand">
+			<a class="navbar-brand" href="<?php bloginfo('siteurl'); ?>">
 				<h1 class="sr-only"><?php bloginfo('name'); ?></h1>
 				<img src="<?php echo get_template_directory_uri(); ?>/images/coom-logo.png" />
 			</a>

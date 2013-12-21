@@ -5958,7 +5958,7 @@ td.visible-print {
   }
 }
 body {
-  padding-top: 60px;
+  padding-top: 120px;
   padding-bottom: 30px;
 }
 body > .container .navbar .navbar-header .navbar-brand img {
@@ -5967,6 +5967,7 @@ body > .container .navbar .navbar-header .navbar-brand img {
 body > .container .navbar #menu-row {
   display: flex;
   border-top: 2px solid #000000;
+  background-color: #FCFCFC;
 }
 body > .container .navbar #menu-row .nav.navbar-nav {
   margin: 0 auto;
@@ -6005,6 +6006,10 @@ body > .container .navbar #menu-row .nav.navbar-nav > li ul.dropdown-menu li.men
   left: -16px;
   margin-bottom: 0px;
   border-radius: 16px;
+}
+body > .container .navbar.navbar-fixed-top > .row {
+  max-width: 1170px;
+  margin: 0 auto;
 }
 body > .container > .jumbotron {
   margin: 30px auto;

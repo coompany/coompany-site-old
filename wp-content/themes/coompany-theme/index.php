@@ -16,4 +16,4 @@ echo get_header();
 				<?php echo get_template_part('navbar'); ?>
 			</div>
 
-<?php echo get_footer(); ?>
+<?php echo get_footer('index'); ?>

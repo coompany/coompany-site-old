@@ -293,7 +293,7 @@ function add_taxonomies_to_menu() {
 				wp_update_nav_menu_item($menu_id, 0, array(
 					'menu-item-title' => __($term->name),
 					'menu-item-classes' => '',
-					'menu-item-url' => $term->url,
+					'menu-item-url' => get_term_link($term),
 					'menu-item-status' => 'publish',
 					'menu-item-parent-id' => $prodotti_id
 				));
@@ -308,7 +308,7 @@ function add_taxonomies_to_menu() {
 				wp_update_nav_menu_item($menu_id, 0, array(
 					'menu-item-title' => __($term->name),
 					'menu-item-classes' => '',
-					'menu-item-url' => $term->url,
+					'menu-item-url' => get_term_link($term),
 					'menu-item-status' => 'publish',
 					'menu-item-parent-id' => $news_id
 				));
