@@ -12,9 +12,16 @@
 
 				<div class="col-xs-2 col-xs-offset-1">
 					<h6>Prodotti:</h6>
-					<ul class="list-unstyled">
-						<li><a href="#">Coo2plan</a></li>
-					</ul>
+					<?php
+					$products_terms = get_terms('prodotti', array('hide_empty'=>false));
+					if(count($products_terms) > 0) {
+						echo '<ul class="list-unstyled">';
+						foreach($products_terms as $product) {
+							echo '<li><a href="'.get_term_link($product).'">'.$product->name.'</a></li>';
+						}
+						echo '</ul>';
+					}
+					?>
 				</div>
 				<div class="col-xs-2">
 					<h6>About:</h6>
