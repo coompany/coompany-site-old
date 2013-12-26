@@ -270,7 +270,7 @@ if(!$run_once) {
 	$team_menu_id = wp_update_nav_menu_item($menu->term_id, 0, array(
 		'menu-item-title' => __('Team'),
 		'menu-item-classes' => '',
-		'menu-item-url' => '#',
+		'menu-item-url' => get_permalink(122),			// 122 is page id for Team page template
 		'menu-item-status' => 'publish',
 		'menu-item-parent-id' => 0
 
