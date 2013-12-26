@@ -5959,7 +5959,11 @@ td.visible-print {
 }
 body {
   padding-top: 120px;
-  background-color: #FCFCFC;
+  background-color: #e9e9e9;
+}
+body > .container #home-navbar {
+  background-color: transparent;
+  margin-top: 80px;
 }
 body > .container .navbar .navbar-header .navbar-brand img {
   width: 100px;
