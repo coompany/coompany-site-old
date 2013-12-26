@@ -255,25 +255,21 @@ if(!$run_once) {
 		'menu-item-title' => __('Prodotti'),
 		'menu-item-classes' => '',
 		'menu-item-url' => '#',
-		'menu-item-status' => 'publish',
-		'menu-item-parent-id' => 0
+		'menu-item-status' => 'publish'
 	));
 	update_option('prodotti_menu_id', $prodotti_menu_id);
 	$news_menu_id = wp_update_nav_menu_item($menu->term_id, 0, array(
 		'menu-item-title' => __('News'),
 		'menu-item-classes' => '',
 		'menu-item-url' => '#',
-		'menu-item-status' => 'publish',
-		'menu-item-parent-id' => 0
+		'menu-item-status' => 'publish'
 	));
 	update_option('news_menu_id', $news_menu_id);
 	$team_menu_id = wp_update_nav_menu_item($menu->term_id, 0, array(
 		'menu-item-title' => __('Team'),
 		'menu-item-classes' => '',
 		'menu-item-url' => get_permalink(122),			// 122 is page id for Team page template
-		'menu-item-status' => 'publish',
-		'menu-item-parent-id' => 0
-
+		'menu-item-status' => 'publish'
 	));
 	update_option('team_menu_id', $team_menu_id);
 
