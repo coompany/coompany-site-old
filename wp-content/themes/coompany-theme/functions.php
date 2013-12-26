@@ -12,6 +12,16 @@
 add_theme_support('post-thumbnails');
 add_theme_support('menus');
 
+//  # EXCLUDE PAGES FROM ADMIN
+add_filter( 'parse_query', 'exclude_pages_from_admin' );
+function exclude_pages_from_admin($query) {
+	global $pagenow,$post_type;
+	if (is_admin() && $pagenow=='edit.php' && $post_type =='page') {
+		// 122 is page Team
+		$query->query_vars['post__not_in'] = array('122');
+	}
+}
+
 
 //  # CUSTOM POST TYPES
 function register_my_custom_post_type() {
