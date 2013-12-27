@@ -30,4 +30,5 @@
 		wp_nav_menu($args);
 		?>
 	</div>
+	<?php if(!is_home()) { ?><div class="row" id="menu-shadow">&nbsp;</div><?php } ?>
 </nav>
