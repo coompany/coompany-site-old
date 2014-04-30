@@ -19,6 +19,7 @@
 	</div>
 	<div class="row" id="menu-row">
 		<?php
+        /*
 		$args = array(
 			'theme_location' => 'main-menu',
 			'depth'      => 2,
@@ -28,6 +29,22 @@
 		);
 
 		wp_nav_menu($args);
+        */
+        //echo '<div class="col-xs-12">';
+        wp_nav_menu(
+            array(
+                'menu'              => 'main-menu',
+                'depth'             => 2,
+                'container'         => 'div',
+                'container_class'   => 'col-xs-12 quilia-container',
+                'menu_class'        => 'quilia-menu row',
+                'sottomenu'        => 0,
+                'fallback_cb'       => 'wp_quilia_navwalker::fallback',
+                'walker'            => new wp_quilia_navwalker(),
+                'items_wrap' => '<div id="%1$s" class="%2$s">%3$s</div>'
+            )
+        );
+        //echo '</div>';
 		?>
 	</div>
 	<?php if(!is_home()) { ?><div class="row" id="menu-shadow">&nbsp;</div><?php } ?>

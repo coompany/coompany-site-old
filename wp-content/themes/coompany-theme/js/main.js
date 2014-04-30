@@ -38,4 +38,18 @@ jQuery(document).ready(function($) {
 
     }
 
+    var extWidth = $('.quilia-extension').parent('li').css('width');
+    $('.quilia-extension').css('min-width', parseInt(extWidth)+3+'px');
+    $('.quilia-extension').parent('li').css('max-width', parseInt(extWidth)+'px');
+
+    (function() {
+        var e = $('.quilia-menu-active li.active');
+        e.parents(".quilia-container").addClass("active");
+        e.parents(".quilia-onda").addClass("active");
+
+        var a = $('.text-menu.active');
+        a.parents(".quilia-container").addClass("active");
+        a.parents(".quilia-onda").addClass("active");
+    })();
+
 });

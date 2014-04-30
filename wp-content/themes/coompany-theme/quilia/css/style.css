@@ -1,0 +1,168 @@
+/* General */
+.quilia-container 
+{
+	margin:0;	
+}
+
+.quilia-container a
+{
+	color:#646464;
+}
+
+.quilia-container a:hover
+{
+	text-decoration: none;	
+	color:#000;
+	font-weight: bold;
+}
+
+.quilia-container ul
+{
+	margin:0;
+	list-style:none;
+	padding:0;	
+}
+
+.quilia-container.active
+{
+	padding-top: 3%;
+}
+
+/* FINE General */
+
+/* Menu - tutto il menu completo */
+.quilia-container .quilia-menu
+{
+	margin:0 auto;
+	padding:0;	
+	width:70%;
+	position:relative;	
+	margin:0 auto !important;
+}
+
+	/* Menu singolo */
+		.quilia-container .quilia-menu .quilia-onda
+		{
+			position:relative;	
+		}
+		
+		.quilia-container .quilia-menu:before
+		{
+			position:absolute;
+			left:0;
+			right:0;
+			border-bottom: 3px solid #000;
+			content:'';
+			bottom: 19%;
+			display:block !important;
+		}
+		
+		@media (max-width:768px)
+		{
+			.quilia-container .quilia-menu:before
+			{
+				display:none !important;	
+			}
+		}
+		
+		.quilia-container.active .quilia-menu:before
+		{
+			top:0;
+			bottom:auto;
+		}
+	
+		/* Contenuto del canvas - onde */
+		.quilia-container .quilia-menu .quilia-only-onda
+		{
+			position:relative;	
+			z-index:500;
+		}
+		
+		.quilia-container .quilia-menu canvas.menu-onde
+		{
+			width:100%;
+			margin-top:35px;
+		}
+		
+		.quilia-container .quilia-menu .quilia-only-onda li
+		{
+			position: absolute;
+			z-index: 1;
+			display: none;
+			padding-left: 10px;
+			padding-right: 10px;
+		}
+		
+		/* FINE Contenuto del canvas - onde */
+		
+		/* Testo menu */
+		.quilia-container .quilia-menu .text-menu
+		{
+			text-align:center;	
+			cursor:pointer;
+		}
+		
+		.quilia-container .quilia-menu .text-menu:hover
+		{
+			font-weight: bold;	
+			color:#000;
+		}
+		
+		.quilia-container .quilia-menu .quilia-onda.active .text-menu
+		{
+			font-weight: bold;	
+			color:#000;
+			position:relative;
+		}
+		
+		.quilia-container.active .quilia-menu .quilia-onda .text-menu
+		{
+			padding-top:30px;	
+		}
+		
+		.quilia-container .quilia-menu .quilia-onda.active .text-menu:after
+		{
+			position: absolute;
+			left: 0;
+			right: 0;
+			content: '';
+			top: 0;
+			display: block !important;
+			height: 22px;
+			width: 45px;
+			border-radius: 0 0 90px 90px;
+			-moz-border-radius: 0 0 90px 90px;
+			-webkit-border-radius: 0 0 90px 90px;
+			background-color: rgb(0, 0, 0);
+			margin: 0 auto;
+		}
+
+		/* FINE Testo menu */
+		
+		/* Sottomenu di sotto */
+		.quilia-container .quilia-menu .quilia-menu-active
+		{
+			display:none;
+			padding-top:10px;
+			margin:0 auto;
+			text-align:center;
+		}
+		
+		.quilia-container .quilia-menu .quilia-menu-active li
+		{
+			display:inline-block;
+			margin-right:10px;
+		}
+		
+		.quilia-container .quilia-menu .quilia-menu-active li.active a
+		{
+			font-weight:bold;
+			color:#000;
+		}
+		
+		
+		/* FINE Sottomenu di sotto */
+		
+	/* FINE Menu singolo */
+
+/* FINE Menu - tutto il menu completo */

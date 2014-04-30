@@ -215,6 +215,10 @@ function enqueue_conditional_scripts() {
 	wp_enqueue_script('jquery', null, array(), null, true);
 	wp_enqueue_script('bootstrap',  get_template_directory_uri().'/js/vendor/bootstrap/bootstrap.min.js', array('jquery'), null, true);
 
+    wp_enqueue_script('three',  get_template_directory_uri().'/quilia/js/three.min.js', array('jquery'), null, true);
+    wp_enqueue_script('onde',  get_template_directory_uri().'/quilia/js/onde.js', array('three'), null, true);
+    wp_enqueue_style('sin-menu', get_template_directory_uri().'/quilia/css/style.css');
+
 	if(is_tax(array('prodotti'))) {
 		wp_enqueue_script('jquery-parallax', get_template_directory_uri().'/js/vendor/jquery/jquery.parallax-1.1.3.js', array('jquery'), null, true);
 		wp_enqueue_script('main-js', get_template_directory_uri().'/js/main.js', array('jquery-parallax'), null, true);
@@ -336,6 +340,9 @@ function add_taxonomies_to_menu() {
 
 add_action('admin_init', 'add_taxonomies_to_menu');
 
+
+//  # SIN MENU
+require_once(dirname(__FILE__).'/quilia/wp_quilia_navwalker.php');
 
 //	# BOOTSTRAP DROPDOWN MENU
 add_action( 'after_setup_theme', 'bootstrap_setup' );
