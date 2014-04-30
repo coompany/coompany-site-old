@@ -6004,6 +6004,13 @@ body > .container .navbar #menu-row .quilia-container.active .quilia-menu .quili
 body > .container .navbar #menu-row .quilia-container .quilia-menu::before {
   border-bottom: 0px solid transparent;
 }
+body > .container .navbar #menu-row .quilia-container .quilia-menu::after {
+  border-bottom: 2px solid #333333;
+  width: 100%;
+  display: block;
+  bottom: 72px;
+  position: relative;
+}
 body > .container .navbar #menu-row .quilia-container .quilia-menu .quilia-onda {
   font-size: 14px;
   margin-bottom: 10px;

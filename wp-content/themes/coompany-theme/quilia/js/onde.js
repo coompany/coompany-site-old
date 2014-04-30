@@ -517,9 +517,9 @@ jQuery(document).ready(function ($) {
     /*
     $(".quilia-only-onda ul li").click(function() {
         n = true;
-        t($('.quilia-menu-active li.active').parents(".quilia-onda").find(".text-menu").attr("data-id-menu"));
         var e = $('.quilia-menu-active li.active');
         setTimeout(function () {
+            t($('.menu-onde.active').attr('data-id-menu'));
             e.parents(".quilia-menu").find(".quilia-only-onda").slideUp(350, function () {
                 e.parents(".quilia-container").addClass("active");
                 e.parents(".quilia-onda").addClass("active")
@@ -527,4 +527,16 @@ jQuery(document).ready(function ($) {
         }, 1200)
     })
     */
+    $(".quilia-only-onda ul li a, .text-menu a").click(function(ev) {
+        n = true;
+        ev.preventDefault();
+        $('.quilia-onda').each(function(k, v) {
+            t($(v).find('.text-menu').attr('data-id-menu'));
+        });
+        $(".quilia-onda").unbind();
+        setTimeout(function() {
+            console.log(ev.currentTarget.href);
+            window.location = ev.currentTarget.href;
+        }, 2000);       // stesso tempo impostato nella transition CSS
+    })
 });
