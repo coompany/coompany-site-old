@@ -216,7 +216,9 @@ function enqueue_conditional_scripts() {
 	wp_enqueue_script('bootstrap',  get_template_directory_uri().'/js/vendor/bootstrap/bootstrap.min.js', array('jquery'), null, true);
 
     wp_enqueue_script('three',  get_template_directory_uri().'/quilia/js/three.min.js', array('jquery'), null, true);
+    wp_enqueue_script('Detector',  get_template_directory_uri().'/quilia/js/Detector.js', array('jquery'), null, true);
     wp_enqueue_script('onde',  get_template_directory_uri().'/quilia/js/onde.js', array('three'), null, true);
+	
     wp_enqueue_style('sin-menu', get_template_directory_uri().'/quilia/css/style.css');
 
 	if(is_tax(array('prodotti'))) {

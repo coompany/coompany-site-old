@@ -1,542 +1,593 @@
-/**
- * Project: Coompany's site
- * User: Andrea Jemmett - acidghost
- * Date: 4/29/14
- * Time: 9:33 PM
- */
+jQuery(document).ready(function($)
+{
 
-jQuery(document).ready(function ($) {
-    function e(e) {
-        $('.menu-onde[data-id-menu="' + e + '"]').addClass("active")
-        // EDITED HERE!
-        $('.menu-onde[data-id-menu="' + e + '"]').parent('.quilia-only-onda').css('max-height', '500px');
-    }
+	$(".menu-onde").each(function(index,element)
+	{
+		var _this = $(this);
+		var _div = $(this.parentNode);
+	
+		// Imposta le dimensioni del renderer
+		var WIDTH = _this.width(), HEIGHT = _this.height();
+		var borderY = 20;
+		var borderX = 50;
+	
+		// Variabili globali
+		var numLink;
+	
+	
+	
+		var verticiNum = 100; // Numero di vertici per ogni onda
+		var ondaLength = WIDTH-borderX*2; // Lunghezza in unità di three.js dell'onda (nel mondo 3d)
+		var pulsazione = 0.001; // Pulsazione dell'onda
+		var numeroOnda = (numLink)/WIDTH*2*Math.PI*1.4;
+		var damp = .4; // Fattore di attrito per l'ampiezza delle onde ruotate in 3d
+		var numOnde = 10; // Numero di onde reali che costituiscono la figura 3d (non contano quelle in più per i bordi
+		var open = false; // Variabile che controlla l'apertura/chiusura
+		var over = false;
+		var tO = 2;	// Tempo di oscillazione pazza
+		var tS = 2; // Tempo di stabilizzazione
+		var tA = 2; // Tempo di chiusura
+		var k = 1/3; 
+		var def = WIDTH*((Math.random() - 0.5)/1.4+0.5);
+	
+		var rotFac = Math.PI/2*1/(numOnde-1); // Quanto ruota ogni onda rispetto alla precedente
+		var dampFac = .7/numOnde; // Quando il fattore di attrito deve smussare la singola onda (dipende da quante ce ne sono in totale)
+		var attenuazione = 1; // Verrà modificata volta per volta nell'attenuazione
+	
+		var color = $(element).attr('data-color');
+	
+		// Vertici delle varie onde
+		var vertici = new Array();
+		var vertici2 = new Array();
+		var vertici3 = new Array();
+		var vertici4 = new Array();
+		var vertici5 = new Array();
+		var vertici6 = new Array();
+		var vertici7 = new Array();
+		var vertici8 = new Array();
+		var vertici9 = new Array();
+		var vertici10 = new Array();
+	
+		// Vertici delle onde aggiuntive per inspessire il bordo
+		var verticiD1 = new Array();
+		var verticiD2 = new Array();
+		var verticiD3 = new Array();
+		
+		// Sposta inizialmente i vertici di tutte le onde in modo che formino una linea piatta lunga quanto definito
+		var i = 0;
+		
+		for (i = 0; i < verticiNum; i++)
+		{
+			vertici.push(new THREE.Vector3(i/verticiNum*ondaLength-ondaLength/2,0,0));
+			vertici2.push(new THREE.Vector3(i/verticiNum*ondaLength-ondaLength/2,0,0));
+			vertici3.push(new THREE.Vector3(i/verticiNum*ondaLength-ondaLength/2,0,0));
+			vertici4.push(new THREE.Vector3(i/verticiNum*ondaLength-ondaLength/2,0,0));
+			vertici5.push(new THREE.Vector3(i/verticiNum*ondaLength-ondaLength/2,0,0));
+			vertici6.push(new THREE.Vector3(i/verticiNum*ondaLength-ondaLength/2,0,0));
+			vertici7.push(new THREE.Vector3(i/verticiNum*ondaLength-ondaLength/2,0,0));	
+			vertici8.push(new THREE.Vector3(i/verticiNum*ondaLength-ondaLength/2,0,0));	
+			vertici9.push(new THREE.Vector3(i/verticiNum*ondaLength-ondaLength/2,0,0));	
+			vertici10.push(new THREE.Vector3(i/verticiNum*ondaLength-ondaLength/2,0,0));	
+		
+			verticiD1.push(new THREE.Vector3(i/verticiNum*ondaLength-ondaLength/2,0,0));	
+			verticiD2.push(new THREE.Vector3(i/verticiNum*ondaLength-ondaLength/2,0,0));	
+			verticiD3.push(new THREE.Vector3(i/verticiNum*ondaLength-ondaLength/2,0,0));	
+			
+		
+		}
+	
+		// Crea gli oggetti 3d
+	
+		// Onda principale
+		var onda = new THREE.Geometry();
+	
+		// Onde secondarie
+		var onda2 = new THREE.Geometry();
+		var onda3 = new THREE.Geometry();
+		var onda4 = new THREE.Geometry();
+		var onda5 = new THREE.Geometry();
+		var onda6 = new THREE.Geometry();
+		var onda7 = new THREE.Geometry();
+		var onda8 = new THREE.Geometry();
+		var onda9 = new THREE.Geometry();
+		var onda10 = new THREE.Geometry();
+	
+		// Onde di bordo
+		var ondaD1 = new THREE.Geometry();
+		var ondaD2 = new THREE.Geometry();
+		var ondaD3 = new THREE.Geometry();
+	
+	
+		// Variabili per il diverso comportamento delle onde nei vari casi
+		
+		
+		var bodyColor = $("body").css("background-color"); // Lo sfondo del mondo 3d deve avere lo stesso colore dello sfondo del documento
+	
+	
+	
+		///////////////////////////////////
+		///// GESTIONE SCENA 3D
+	
+	
+		// Imposta la camera
+		var VIEW_ANGLE = 45, ASPECT = WIDTH / HEIGHT,  NEAR = 0.1,  FAR = 10000;
+	
+		// Crea il renderer WebGL
+		var renderer = Detector.webgl? new THREE.WebGLRenderer({ antialias: true, canvas: element}): new THREE.CanvasRenderer({ antialias: true, canvas: element});
+	
+		renderer.setClearColor( bodyColor );
+		renderer.setSize(WIDTH, HEIGHT);
+	
+		// Crea la videocamera		
+		var camera =  new THREE.OrthographicCamera( WIDTH / - 2, WIDTH / 2, HEIGHT / 2, HEIGHT / - 2, 1, 1000 );
+	
+		// Crea la scena 3d
+		var scene = new THREE.Scene();
+	
+		// Aggiungi la camera alla scena e spostala dove serve
+		scene.add(camera);
+	
+		var d = 10;
+		var h = 2.3;
+		var theta = Math.PI/18 ;
+		
+		camera.position.z = 1000;
+		camera.position.y = HEIGHT/2-borderY;
+	
+	
+		// Crea l'onda principale e le secondarie
+		for (i = 0; i < verticiNum; i++)
+		{
+			onda.vertices.push(vertici[i]);
+			onda2.vertices.push(vertici2[i]);
+			onda3.vertices.push(vertici3[i]);
+			onda4.vertices.push(vertici4[i]);
+			onda5.vertices.push(vertici5[i]);
+			onda6.vertices.push(vertici6[i]);
+			onda7.vertices.push(vertici7[i]);
+			onda8.vertices.push(vertici8[i]);
+			onda9.vertices.push(vertici9[i]);
+			onda10.vertices.push(vertici10[i]);
+		
+			ondaD1.vertices.push(verticiD1[i]);
+			ondaD2.vertices.push(verticiD2[i]);
+			ondaD3.vertices.push(verticiD3[i]);
+		}
+		
+		// Crea il materiale delle onde
+		var ondaMat = new THREE.LineBasicMaterial({color: color, opacity: 1, linewidth: 1}); 		
+		ondaMat.transparent = true;
+	
+		// Crea la rappresentazione visiva delle onde
+		var line = new THREE.Line(onda, ondaMat);	
+		var line2 = new THREE.Line(onda2, ondaMat);
+		var line3 = new THREE.Line(onda3, ondaMat);
+		var line4 = new THREE.Line(onda4, ondaMat);
+		var line5 = new THREE.Line(onda5, ondaMat);
+		var line6 = new THREE.Line(onda6, ondaMat);
+		var line7 = new THREE.Line(onda7, ondaMat);
+		var line8 = new THREE.Line(onda8, ondaMat);
+		var line9 = new THREE.Line(onda9, ondaMat);
+		var line10 = new THREE.Line(onda10, ondaMat);
+		
+		var lineD1 = new THREE.Line(ondaD1, ondaMat);
+		var lineD2 = new THREE.Line(ondaD2, ondaMat);
+		var lineD3 = new THREE.Line(ondaD3, ondaMat);
+		
+		scene.add(line);
+		scene.add(line2);			
+		scene.add(line3);			
+		scene.add(line4);			
+		scene.add(line5);			
+		scene.add(line6);			
+		scene.add(line7);			
+		scene.add(line8);			
+		scene.add(line9);			
+		scene.add(line10);			
+		scene.add(lineD1);			
+		scene.add(lineD2);			
+		scene.add(lineD3);			
+	
+		var backgroundBarMat = new THREE.MeshBasicMaterial({color: 0x222222});
+		var backgroundBar = new THREE.Mesh(new THREE.CubeGeometry(WIDTH,4,1), backgroundBarMat);
+		backgroundBar.position.z = 500;
+		backgroundBar.position.y = 1;
+		scene.add(backgroundBar);
+	
+		var waveBarMat = new THREE.MeshBasicMaterial({color: color});	
+		waveBarMat.transparent = true;
+		waveBarMat.opacity = 0;
+		var waveBar =  new THREE.Mesh(new THREE.CubeGeometry(ondaLength,4,1), waveBarMat); 
+		waveBar.position.z = 510;
+		waveBar.position.y = 1;
+		
+		scene.add(waveBar);
+	
+	
+		// Capisci quale link stanno in questa onda
+		var linkList=_this.parent().find('ul li'); // Lista di tutti i <li> nel menù attuale
+		
+		
+		numLink = linkList.length;		
+		numeroOnda = (numLink)/ondaLength*2*Math.PI;
+	
+	
+		// Variabili temporali
+		var t = 0; // Tempo che gestisce le fasi di crescita
+		var t1 = .8;
+		var t2 = 1; // Tempo che gestisce le fasi di decrescita
+		var t3 = 0.5;
+		var clock = new THREE.Clock();
+		var delta; 
+		
+		var fase = 0; // Definisce lo stato in cui si trova l'onda in quel momento
+		var decresce = false; // Attiva solo quando l'onda si sta richiudendo		
+	
+		
+		// Chiama per la prima volta la funzione di animazione
+		animate();	
+	
+	
+		
+		function animate(){
+					
+			// Prendi i dati blabla
+			if (_this.hasClass("active") == true && open == false) open = true;
+			if (_this.hasClass("active") == false && open == true) open = false;
+			over = _this.data( "over");
+		
+			// Aggiorna il tempo
+			var time;
+			time = 	(new Date()).getTime();
+		
+			// Calcola il tempo passato dall'ultimo fotogramma
+			delta = clock.getDelta();
+			
+			// Fai passare il tempo solo nel  caso l'onda sia in una fase di movimento
+			
+			t += delta;	
+			
+			
+			// Movimento dell'onda principale
+			for (i=0;i<verticiNum;i++)
+			{
+				// Moto sinusoidale
+				onda.vertices[i].y = HEIGHT/2*Math.sin((onda.vertices[i].x-ondaLength/2-(ondaLength/numLink)/4)*numeroOnda);
+			
+				// Armoniche oscillanti in fase stabile
+				if (fase == 1)
+				{
+					onda.vertices[i].y += HEIGHT/3*Math.sin((onda.vertices[i].x-ondaLength/2-(ondaLength/numLink)/4)*numeroOnda*3+pulsazione*10*time)*t/t1;
+				}
+				if (fase == 2)
+				{
+					onda.vertices[i].y += HEIGHT/3*Math.sin((onda.vertices[i].x-ondaLength/2-(ondaLength/numLink)/4)*numeroOnda*3+pulsazione*10*time)*(-t/t2+1);
+				}
+				if (fase == 3)
+				{
+					onda.vertices[i].y += HEIGHT/20*Math.sin((onda.vertices[i].x-ondaLength/2-(ondaLength/numLink)/4)*numeroOnda+pulsazione*time);
+				}	
+			
+		
+				// Sposta in su l'onda principale in modo che non sia allo stesso livello del terreno
+				onda.vertices[i].y = onda.vertices[i].y/2+HEIGHT/3*2;
+				
+				// Il comportamento dell'onda è diverso nella fase di crescita o di decrescita
+				if (decresce == false)
+				{
+					// Se si è appena detto all'onda di attivarsi cambia fase (ma solo se non è già in decrescita)
+					if (open && fase == 0)
+					{
+						fase = 1;
+						t = 0;
+						
+						if (numLink == 2) def = borderX+(ondaLength)/(2*numLink)+(ondaLength)/numLink*Math.floor(Math.random() * 2);						
+						else if (numLink == 3) def = borderX+(ondaLength)/(2*numLink)+(ondaLength)/numLink*Math.floor(Math.random() * 3);
+						else if (numLink == 4) def = borderX+(ondaLength)/(2*numLink)+(ondaLength)/numLink*Math.floor((Math.random() * 2  + 1));					
+						else if (numLink == 5) def = borderX+(ondaLength)/(2*numLink)+(ondaLength)/numLink*Math.floor((Math.random() * 3 + 1) );					
+						else if (numLink == 6) def = borderX+(ondaLength)/(2*numLink)+(ondaLength)/numLink*Math.floor((Math.random() * 4 + 1));									
+						else def = borderX+(ondaLength)/(2*numLink)+(ondaLength)/numLink*Math.floor((Math.random() * (numLink-2)+1 ));
+						
+		
+					}
+		
+					// Comportamento nelle varie fasi
+					if (fase == 0)
+					{
+						// Inizialmente l'onda è quasi piatta						
+						onda.vertices[i].y = onda.vertices[i].y/100;
+						ondaMat.opacity = 0;
+					}
+					if (fase == 1)  // Crescita
+					{			
+						//  Rendi l'onda più visibile
+						ondaMat.opacity += (1-ondaMat.opacity)/1000;
+						 // Per un po' alza l'onda
+						if (t < t1) onda.vertices[i].y = onda.vertices[i].y*t/t1;
+						else
+						{
+							fase = 2;
+							t = 0;
+						}
+					}
+					if (fase == 2) // Stabilizzazione
+					{
+						if (t >= t2) fase = 3;
+					}
+				}
+				
+				// Gestisce l'input di chiusura
+				if (open == false) 
+				{
+					if (decresce == false && fase > 0)
+					{
+						t = 0;					
+						decresce = true;
+					}
+		
+				}				
+				
+				
+				if (decresce == true)
+				{
+					// Dopo un po' di tempo l'onda si deve chiudere del tutto
+					if (t> t3)
+					{
+						fase = 0;
+						decresce = false;
+						_this.trigger("waveClose");
+					}
+					
+					// E alla fine è meglio che svanisca lentamente
+					if (t > t3/10*9) 	ondaMat.opacity += (0-ondaMat.opacity)/10000;		
+					
+					onda.vertices[i].y *= -t/t3+1;
+				}
+		
+				
+		
+				
+				// In tutti i casi le onde devono essere limitate ai bordi
+				var w1 = WIDTH/2-borderX;
+				var w2 = WIDTH/2-borderX-WIDTH/verticiNum;
+				
+		
+				onda.vertices[i].y *= 2*(onda.vertices[i].x+WIDTH/2)*(onda.vertices[i].x+WIDTH/2)/(def*def)*Math.pow(2.71, -(onda.vertices[i].x+WIDTH/2)*(onda.vertices[i].x+WIDTH/2)/(def*def))+0.2;
+				onda.vertices[i].y *= 1 - (w1+w2)/(w1*w2*w2+w2*w1*w1)*onda.vertices[i].x*onda.vertices[i].x+(w2*w2-w1*w1)/(w1*w2*w2+w2*w1*w1)*onda.vertices[i].x;				
+		
+				//onda.vertices[i].y *= 1+1.5*Math.abs((def-ondaLength/2)/ondaLength);
+		
+			}
+			
+			
+			// Fai copiare alle onde secondarie il movimento dell'onda principale, ruotandole e attenuandole
+			for (i = 0; i < verticiNum; i++)
+			{
+				attenuazione = 1-dampFac*1;
+				onda2.vertices[i].y = (onda.vertices[i].y*attenuazione)*Math.cos(rotFac*1);
+				onda2.vertices[i].z = (onda.vertices[i].y*attenuazione)*Math.sin(rotFac*1);
+		
+				attenuazione = 1-dampFac*2;
+				onda3.vertices[i].y = (onda.vertices[i].y*attenuazione)*Math.cos(rotFac*2.6);
+				onda3.vertices[i].z = (onda.vertices[i].y*attenuazione)*Math.sin(rotFac*2.6);
+				
+				attenuazione = 1-dampFac*3;
+				onda4.vertices[i].y = (onda.vertices[i].y*attenuazione)*Math.cos(rotFac*3.6);
+				onda4.vertices[i].z = (onda.vertices[i].y*attenuazione)*Math.sin(rotFac*3.6);
+				
+				attenuazione = 1-dampFac*4;
+				onda5.vertices[i].y = (onda.vertices[i].y*attenuazione)*Math.cos(rotFac*5.2);
+				onda5.vertices[i].z = (onda.vertices[i].y*attenuazione)*Math.sin(rotFac*5.2);
+				
+				attenuazione = 1-dampFac*5;
+				onda6.vertices[i].y = (onda.vertices[i].y*attenuazione)*Math.cos(rotFac*6);
+				onda6.vertices[i].z = (onda.vertices[i].y*attenuazione)*Math.sin(rotFac*6);
+				
+				attenuazione = 1-dampFac*6;
+				onda7.vertices[i].y = (onda.vertices[i].y*attenuazione)*Math.cos(rotFac*6.8);
+				onda7.vertices[i].z = (onda.vertices[i].y*attenuazione)*Math.sin(rotFac*6.8);
+															
+				attenuazione = 1-dampFac*7;
+				onda8.vertices[i].y = (onda.vertices[i].y*attenuazione)*Math.cos(rotFac*7.3);
+				onda8.vertices[i].z = (onda.vertices[i].y*attenuazione)*Math.sin(rotFac*7.3);
+								
+				attenuazione = 1-dampFac*8;
+				onda9.vertices[i].y = (onda.vertices[i].y*attenuazione)*Math.cos(rotFac*8.3);
+				onda9.vertices[i].z = (onda.vertices[i].y*attenuazione)*Math.sin(rotFac*8.3);
+								
+				attenuazione = 1-dampFac*9;
+				onda10.vertices[i].y = (onda.vertices[i].y*attenuazione)*Math.cos(rotFac*9);
+				onda10.vertices[i].z = (onda.vertices[i].y*attenuazione)*Math.sin(rotFac*9);
+				
+				// Allarga bordo superiore e inferiore con il trucco delle onde duplicate
+				ondaD1.vertices[i].y = (onda.vertices[i].y)+0.8;
+				ondaD2.vertices[i].y = (onda.vertices[i].y)+1.6;
+				ondaD3.vertices[i].y = (onda.vertices[i].y)+2.4;
+									
+			}	
+			
+			
+			// Necessario perchè le onde aggiornino i vertici in WebGL
+			onda.verticesNeedUpdate = true;				
+			onda2.verticesNeedUpdate = true;				
+			onda3.verticesNeedUpdate = true;				
+			onda4.verticesNeedUpdate = true;				
+			onda5.verticesNeedUpdate = true;				
+			onda6.verticesNeedUpdate = true;				
+			onda7.verticesNeedUpdate = true;				
+			onda8.verticesNeedUpdate = true;				
+			onda9.verticesNeedUpdate = true;				
+			onda10.verticesNeedUpdate = true;
+			
+			ondaD1.verticesNeedUpdate = true;				
+			ondaD2.verticesNeedUpdate = true;				
+			ondaD3.verticesNeedUpdate = true;	
+			
+		
+			if (open)
+			{
+				if (waveBarMat.opacity < 1)
+				{
+					waveBarMat.opacity += 0.1;
+				}
+			}
+			else
+			{
+				// Barretta colorata
+				if (over)
+				{
+					if (waveBarMat.opacity < 1)
+					{
+						waveBarMat.opacity += 0.1;
+					}
+				}
+				else
+				{
+					if (waveBarMat.opacity > 0)
+					{
+						waveBarMat.opacity -= 0.1;
+					}
+				}
+			}
+		
+			
+			
+			////////////////////////////
+			// Getione dei link
+			////////////////////////////
+			
+		
+		
+			// Variabili per la gestione della posizione dei link
+			var linkX;
+			var linkY;
+			var deltaX;
+			
+			var count  = linkList.length;
+		
+			// Cicla per ogni sottomenù all'interno di quest'onda
+			for (i = 0; i < count; i++)
+			{
+				if (fase == 0)
+				{
+					linkList[i].style.opacity = 0;
+				}					
+				
+				if (fase == 3 && decresce == false)
+				{
+						if (linkList[i].style.opacity == 0) $(linkList[i]).fadeTo("slow",1);				
+				}
+				
+				if (decresce)
+				{
+					if (linkList[i].style.opacity == 1) $(linkList[i]).fadeTo("slow",0);						
+				}
+				
+				linkX = (ondaLength)/(2*numLink)+(ondaLength)/numLink*i;
+				linkY=  onda.vertices[parseInt(linkX/ondaLength*verticiNum)].y  ;
+				if (linkX  < ondaLength/2 - 20) deltaX = -1;
+				else if (linkX > ondaLength/2 + 20) deltaX = 0;
+				else deltaX = -1/2;
+				
+				$(linkList[i]).css("left", _this.position().left+borderX+linkX+deltaX*$(linkList[i]).children().outerWidth());			
+				$(linkList[i]).css("top", _this.position().top+HEIGHT-borderY-linkY-40);
+			}
 
-    function t(e) {
-        $('.menu-onde[data-id-menu="' + e + '"]').removeClass("active")
-        // EDITED HERE!
-        $('.menu-onde[data-id-menu="' + e + '"]').parent('.quilia-only-onda').css('max-height', '0px');
-    }
-    $(".menu-onde").each(function (e, t) {
-        function zt() {
-            if (n.hasClass("active") == true && l == false) l = true;
-            if (n.hasClass("active") == false && l == true) l = false;
-            var e = (new Date).getTime();
-            ot = st.getDelta();
-            if (ut == 1 || ut == 2 || ut == 4) {
-                tt += ot
-            }
-            if (at) {
-                nt += ot
-            }
-            for (B = 0; B < i; B++) {
-                if (ut == 0 || ut == 1) {
-                    F.vertices[B].y = Math.sin(o * e - F.vertices[B].x * u)
-                }
-                if (ut == 2) {
-                    F.vertices[B].y = Math.sin(o * e - F.vertices[B].x * u)
-                }
-                if (ut == 3) {
-                    F.vertices[B].y = Math.sin(o * it - F.vertices[B].x * u)
-                }
-                if (ut == 4) {
-                    F.vertices[B].y = (tt - p) / (1 - p) * Math.sin(o * it - F.vertices[B].x * u) + (tt - 1) / (p - 1) * Math.sin(o * e - F.vertices[B].x * u)
-                }
-                if (ut == 1) {
-                    F.vertices[B].y += Math.sin(o * e - F.vertices[B].x * u / 2) * tt * a + .5;
-                    F.vertices[B].y += Math.sin(o * e - F.vertices[B].x * u * 2) * tt * a / 2 + .5
-                } else if (ut == 2) {
-                    F.vertices[B].y += Math.sin(o * e - F.vertices[B].x * u / 2) * a * ((d - c) * tt + c * (h - 1) - d + c) / (h - 1) + .5;
-                    F.vertices[B].y += Math.sin(o * e - F.vertices[B].x * u * 2) * a / 2 * ((d - c) * tt + c * (h - 1) - d + c) / (h - 1) + .5
-                } else if (ut == 3) {
-                    F.vertices[B].y += Math.sin(o * e - F.vertices[B].x * u / 2) * a * d / 2 + .5;
-                    F.vertices[B].y += Math.sin(o * e - F.vertices[B].x * u * 2) * a / 4 * d + .5
-                }
-                F.vertices[B].y = F.vertices[B].y / 3 + .7;
-                if (at == false) {
-                    if (l && ut == 0) {
-                        ut = 1;
-                        tt = 1
-                    }
-                    if (ut == 0) {
-                        F.vertices[B].y = F.vertices[B].y / 100;
-                        xt.opacity = 0;
-                        Rt.opacity = 0
-                    }
-                    if (ut == 1) {
-                        xt.opacity += (1 - xt.opacity) / 1e3;
-                        Rt.opacity = 1;
-                        if (tt < c) {
-                            F.vertices[B].y = F.vertices[B].y * (99 * tt + c - 100) / (100 * (c - 1))
-                        } else {
-                            ut = 2;
-                            tt = 1
-                        }
-                    }
-                    if (ut == 2) {
-                        if (tt > h) {
-                            ut = 3;
-                            it = e
-                        }
-                    }
-                }
-                if (at == true) {
-                    if (nt > p) {
-                        ut = 0;
-                        at = false
-                    }
-                    if (nt > p / 10 * 9) xt.opacity += (0 - xt.opacity) / 1e4;
-                    if (ut == 0) {
-                        F.vertices[B].y = F.vertices[B].y / 100
-                    }
-                    if (ut == 1) {
-                        F.vertices[B].y = F.vertices[B].y * (9 * tt + c - 10) / (10 * (c - 1))
-                    }
-                    var t = ((Math.sin(o * e - F.vertices[B].x * u) + Math.sin(o * e - F.vertices[B].x * u / 2) * a + Math.sin(o * e - F.vertices[B].x * u * 2) * a / 2) / 3 + .7) / 100;
-                    F.vertices[B].y = (nt - p) / (1 - p) * F.vertices[B].y + (nt - 1) / (p - 1) * t
-                }
-                if (l == false) {
-                    if (at == false && ut > 0) {
-                        rt = tt;
-                        nt = 1;
-                        at = true
-                    }
-                }
-                if (F.vertices[B].x < 0) {
-                    F.vertices[B].y *= F.vertices[B].x - F.vertices[0].x
-                } else {
-                    F.vertices[B].y *= F.vertices[i - 1].x - F.vertices[B].x
-                }
-                F.vertices[B].y *= .7
-            }
-            for (B = 0; B < i; B++) {
-                g = 1 - m * 1;
-                I.vertices[B].y = F.vertices[B].y * g * Math.cos(v * 1);
-                I.vertices[B].z = F.vertices[B].y * g * Math.sin(v * 1);
-                g = 1 - m * 2;
-                q.vertices[B].y = F.vertices[B].y * g * Math.cos(v * 2.6);
-                q.vertices[B].z = F.vertices[B].y * g * Math.sin(v * 2.6);
-                g = 1 - m * 3;
-                R.vertices[B].y = F.vertices[B].y * g * Math.cos(v * 3.6);
-                R.vertices[B].z = F.vertices[B].y * g * Math.sin(v * 3.6);
-                g = 1 - m * 4;
-                U.vertices[B].y = F.vertices[B].y * g * Math.cos(v * 5.2);
-                U.vertices[B].z = F.vertices[B].y * g * Math.sin(v * 5.2);
-                g = 1 - m * 5;
-                z.vertices[B].y = F.vertices[B].y * g * Math.cos(v * 6);
-                z.vertices[B].z = F.vertices[B].y * g * Math.sin(v * 6);
-                g = 1 - m * 6;
-                W.vertices[B].y = F.vertices[B].y * g * Math.cos(v * 6.8);
-                W.vertices[B].z = F.vertices[B].y * g * Math.sin(v * 6.8);
-                g = 1 - m * 7;
-                X.vertices[B].y = F.vertices[B].y * g * Math.cos(v * 7.6);
-                X.vertices[B].z = F.vertices[B].y * g * Math.sin(v * 7.6);
-                g = 1 - m * 8;
-                V.vertices[B].y = F.vertices[B].y * g * Math.cos(v * 8.3);
-                V.vertices[B].z = F.vertices[B].y * g * Math.sin(v * 8.3);
-                g = 1 - m * 9;
-                J.vertices[B].y = F.vertices[B].y * g * Math.cos(v * 9);
-                J.vertices[B].z = F.vertices[B].y * g * Math.sin(v * 9);
-                K.vertices[B].y = F.vertices[B].y + .01;
-                Q.vertices[B].y = F.vertices[B].y + .02;
-                G.vertices[B].y = F.vertices[B].y + .03;
-                Y.vertices[B].z = J.vertices[B].z + .01;
-                Z.vertices[B].z = J.vertices[B].z + .02;
-                et.vertices[B].z = J.vertices[B].z + .03;
-                Y.vertices[B].y = 0;
-                Z.vertices[B].y = 0;
-                et.vertices[B].y = 0
-            }
-            F.verticesNeedUpdate = true;
-            I.verticesNeedUpdate = true;
-            q.verticesNeedUpdate = true;
-            R.verticesNeedUpdate = true;
-            U.verticesNeedUpdate = true;
-            z.verticesNeedUpdate = true;
-            W.verticesNeedUpdate = true;
-            X.verticesNeedUpdate = true;
-            V.verticesNeedUpdate = true;
-            J.verticesNeedUpdate = true;
-            K.verticesNeedUpdate = true;
-            Q.verticesNeedUpdate = true;
-            G.verticesNeedUpdate = true;
-            Y.verticesNeedUpdate = true;
-            Z.verticesNeedUpdate = true;
-            et.verticesNeedUpdate = true;
-            var r;
-            var f;
-            r = n.next().children();
-            f = r.length;
-            var y;
-            var b;
-            var w = .045;
-            var E;
-            var S;
-            var x;
-            var T = true;
-            for (B = 0; B < f; B++) {
-                if (ut == 0) {
-                    if (r.eq(B).is(":visible")) {
-                        r.eq(B).hide(300)
-                    }
-                }
-                if (ut == 3 && at == false) {
-                    if (!r.eq(B).is(":visible")) r.eq(B).show(350)
-                }
-                if (at) {
-                    if (r.eq(B).is(":visible")) r.eq(B).hide(300)
-                }
-                if (ut == 3 && at == false) {
-                    E = (B + 1) / (f + 1);
-                    if (E < .4) {
-                        r.eq(B).css("left", E * lt + w * lt - r.eq(B).width() * 1.11)
-                    } else if (E > .6) {
-                        r.eq(B).css("left", (E - w) * lt)
-                    } else {
-                        if (r.length % 2 == 0) {
-                            if (B + 1 <= r.length / 2) {
-                                r.eq(B).css("left", E * lt - r.eq(B).width() / 2 - 50)
-                            } else {
-                                r.eq(B).css("left", E * lt - r.eq(B).width() / 2 + 50)
-                            }
-                        } else {
-                            r.eq(B).css("left", E * lt - r.eq(B).width() / 2)
-                        }
-                    }
-                    x = E * i;
-                    b = ct / 1.4;
-                    if (T) {
-                        if (E > .4 && E < .6) {
-                            // edited, was:
-                            //b -= (2.5 * (1 - 4 * Math.pow(F.vertices[parseInt(x)].x, 2) / (s * s)) * ct / 5 + F.vertices[parseInt(x)].y * ct / 5) / 2 + r.eq(B).height() * 1.5
-                            b -= (2.5 * (1 - 4 * Math.pow(F.vertices[parseInt(x)].x, 2) / (s * s)) * ct / 5 + F.vertices[parseInt(x)].y * ct / 5) / 2 + r.eq(B).height() * 0.7
-                        } else {
-                            // edited, was:
-                            //b -= (2.5 * (1 - 4 * Math.pow(F.vertices[parseInt(x)].x, 2) / (s * s)) * ct / 5 + F.vertices[parseInt(x)].y * ct / 5) / 2
-                            b -= (2.5 * (1 - 4 * Math.pow(F.vertices[parseInt(x)].x, 2) / (s * s)) * ct / 5 + F.vertices[parseInt(x)].y * ct / 5) / 2 + 23
-                        }
-                    } else {
-                        b -= F.vertices[parseInt(x)].y * ct / 8;
-                        b -= 25
-                    }
-                    r.eq(B).css("top", b)
-                }
-            }
-            for (j = 0; j < 10; j++) {
-                for (B = 0; B < i; B++) {
-                    if (j == 0) {
-                        qt.vertices[B + j * i].y = F.vertices[B].y;
-                        qt.vertices[B + j * i].x = F.vertices[B].x;
-                        qt.vertices[B + j * i].z = F.vertices[B].z - .1
-                    }
-                    if (j == 1) {
-                        qt.vertices[B + j * i].y = I.vertices[B].y;
-                        qt.vertices[B + j * i].x = I.vertices[B].x;
-                        qt.vertices[B + j * i].z = I.vertices[B].z - .1
-                    }
-                    if (j == 2) {
-                        qt.vertices[B + j * i].y = q.vertices[B].y;
-                        qt.vertices[B + j * i].x = q.vertices[B].x;
-                        qt.vertices[B + j * i].z = q.vertices[B].z - .1
-                    }
-                    if (j == 3) {
-                        qt.vertices[B + j * i].y = R.vertices[B].y;
-                        qt.vertices[B + j * i].x = R.vertices[B].x;
-                        qt.vertices[B + j * i].z = R.vertices[B].z - .1
-                    }
-                    if (j == 4) {
-                        qt.vertices[B + j * i].y = U.vertices[B].y;
-                        qt.vertices[B + j * i].x = U.vertices[B].x;
-                        qt.vertices[B + j * i].z = U.vertices[B].z - .1
-                    }
-                    if (j == 5) {
-                        qt.vertices[B + j * i].y = z.vertices[B].y;
-                        qt.vertices[B + j * i].x = z.vertices[B].x;
-                        qt.vertices[B + j * i].z = z.vertices[B].z - .1
-                    }
-                    if (j == 6) {
-                        qt.vertices[B + j * i].y = W.vertices[B].y;
-                        qt.vertices[B + j * i].x = W.vertices[B].x;
-                        qt.vertices[B + j * i].z = W.vertices[B].z - .1
-                    }
-                    if (j == 7) {
-                        qt.vertices[B + j * i].y = X.vertices[B].y;
-                        qt.vertices[B + j * i].x = X.vertices[B].x;
-                        qt.vertices[B + j * i].z = X.vertices[B].z - .1
-                    }
-                    if (j == 8) {
-                        qt.vertices[B + j * i].y = V.vertices[B].y;
-                        qt.vertices[B + j * i].x = V.vertices[B].x;
-                        qt.vertices[B + j * i].z = V.vertices[B].z - .1
-                    }
-                    if (j == 9) {
-                        qt.vertices[B + j * i].y = J.vertices[B].y;
-                        qt.vertices[B + j * i].x = J.vertices[B].x;
-                        qt.vertices[B + j * i].z = J.vertices[B].z - .1
-                    }
-                }
-            }
-            qt.verticesNeedUpdate = true;
-            lt = n.width();
-            ct = n.height();
-            pt = lt / ct;
-            mt.setSize(lt, ct);
-            mt.render(yt, gt);
-            requestAnimationFrame(function () {
-                zt()
-            })
-        }
-        var n = $(this);
-        var r = $(this).parent();
-        var i = 130;
-        var s = 7;
-        var o = .004;
-        var u = 5;
-        var a = .4;
-        var f = 10;
-        var l = false;
-        var c = 2;
-        var h = 2;
-        var p = 2;
-        var d = 1 / 3;
-        var v = Math.PI / 2 * 1 / (f - 1);
-        var m = .7 / f;
-        var g = 1;
-        var y = new Array;
-        var b = new Array;
-        var w = new Array;
-        var E = new Array;
-        var S = new Array;
-        var x = new Array;
-        var T = new Array;
-        var N = new Array;
-        var C = new Array;
-        var k = new Array;
-        var L = new Array;
-        var A = new Array;
-        var O = new Array;
-        var M = new Array;
-        var _ = new Array;
-        var D = new Array;
-        var P = false;
-        var H = false;
-        var B = 0;
-        for (B = 0; B < i; B++) {
-            y.push(new THREE.Vector3(B / i * s - s / 2, 0, 0));
-            b.push(new THREE.Vector3(B / i * s - s / 2, 0, 0));
-            w.push(new THREE.Vector3(B / i * s - s / 2, 0, 0));
-            E.push(new THREE.Vector3(B / i * s - s / 2, 0, 0));
-            S.push(new THREE.Vector3(B / i * s - s / 2, 0, 0));
-            x.push(new THREE.Vector3(B / i * s - s / 2, 0, 0));
-            T.push(new THREE.Vector3(B / i * s - s / 2, 0, 0));
-            N.push(new THREE.Vector3(B / i * s - s / 2, 0, 0));
-            C.push(new THREE.Vector3(B / i * s - s / 2, 0, 0));
-            k.push(new THREE.Vector3(B / i * s - s / 2, 0, 0));
-            L.push(new THREE.Vector3(B / i * s - s / 2, 0, 0));
-            A.push(new THREE.Vector3(B / i * s - s / 2, 0, 0));
-            O.push(new THREE.Vector3(B / i * s - s / 2, 0, 0));
-            M.push(new THREE.Vector3(B / i * s - s / 2, 0, 0));
-            _.push(new THREE.Vector3(B / i * s - s / 2, 0, 0));
-            D.push(new THREE.Vector3(B / i * s - s / 2, 0, 0))
-        }
-        var F = new THREE.Geometry;
-        var I = new THREE.Geometry;
-        var q = new THREE.Geometry;
-        var R = new THREE.Geometry;
-        var U = new THREE.Geometry;
-        var z = new THREE.Geometry;
-        var W = new THREE.Geometry;
-        var X = new THREE.Geometry;
-        var V = new THREE.Geometry;
-        var J = new THREE.Geometry;
-        var K = new THREE.Geometry;
-        var Q = new THREE.Geometry;
-        var G = new THREE.Geometry;
-        var Y = new THREE.Geometry;
-        var Z = new THREE.Geometry;
-        var et = new THREE.Geometry;
-        var tt = 1;
-        var nt = 1;
-        var rt;
-        var it;
-        var st = new THREE.Clock;
-        var ot;
-        var ut = 0;
-        var at = false;
-        var ft = $(document.body).css("background-color");
-        var lt = n.width(),
-            ct = 150 * lt / 300;
-        var ht = 30,
-            pt = lt / ct,
-            dt = .1,
-            vt = 1e4;
-        ht = 30 * lt / (ct * 2.7);
-        var mt = new THREE.WebGLRenderer({
-            antialias: true,
-            canvas: t,
-            alpha: true
-        });
-        mt.setClearColor(0, 0);
-        mt.setSize(lt, ct);
-        var gt = new THREE.PerspectiveCamera(ht, pt, dt, vt);
-        var yt = new THREE.Scene;
-        yt.add(gt);
-        var bt = 10;
-        var wt = 3.25;
-        var Et = Math.PI / 18;
-        gt.position.z = bt;
-        gt.position.y = wt;
-        gt.rotation.x = -Et;
-        for (B = 0; B < i; B++) {
-            F.vertices.push(y[B]);
-            I.vertices.push(b[B]);
-            q.vertices.push(w[B]);
-            R.vertices.push(E[B]);
-            U.vertices.push(S[B]);
-            z.vertices.push(x[B]);
-            W.vertices.push(T[B]);
-            X.vertices.push(N[B]);
-            V.vertices.push(C[B]);
-            J.vertices.push(k[B]);
-            K.vertices.push(L[B]);
-            Q.vertices.push(A[B]);
-            G.vertices.push(O[B]);
-            Y.vertices.push(M[B]);
-            Z.vertices.push(_[B]);
-            et.vertices.push(D[B])
-        }
-        var St = $(t).attr("data-color");
-        var xt = new THREE.LineBasicMaterial({
-            color: St,
-            opacity: 1,
-            linewidth: 1
-        });
-        xt.transparent = true;
-        var Tt = new THREE.Line(F, xt);
-        var Nt = new THREE.Line(I, xt);
-        var Ct = new THREE.Line(q, xt);
-        var kt = new THREE.Line(R, xt);
-        var Lt = new THREE.Line(U, xt);
-        var At = new THREE.Line(z, xt);
-        var Ot = new THREE.Line(W, xt);
-        var Mt = new THREE.Line(X, xt);
-        var _t = new THREE.Line(V, xt);
-        var Dt = new THREE.Line(J, xt);
-        var Pt = new THREE.Line(K, xt);
-        var Ht = new THREE.Line(Q, xt);
-        var Bt = new THREE.Line(G, xt);
-        var jt = new THREE.Line(Y, xt);
-        var Ft = new THREE.Line(Z, xt);
-        var It = new THREE.Line(et, xt);
-        yt.add(Tt);
-        yt.add(Nt);
-        yt.add(Ct);
-        yt.add(kt);
-        yt.add(Lt);
-        yt.add(At);
-        yt.add(Ot);
-        yt.add(Mt);
-        yt.add(_t);
-        yt.add(Dt);
-        yt.add(Pt);
-        yt.add(Ht);
-        yt.add(Bt);
-        yt.add(jt);
-        yt.add(Ft);
-        yt.add(It);
-        var qt = new THREE.PlaneGeometry(5, 5, i - 1, 10 - 1);
-        var Rt = new THREE.MeshBasicMaterial({
-            color: 16777215
-        });
-        Rt.transparent = true;
-        var Ut = new THREE.Mesh(qt, Rt);
-        yt.add(Ut);
-        Ut.position.x = 0;
-        Ut.position.y = 0;
-        Ut.position.z = 0;
-        zt()
+			
+			// Aggiusta le dimensioni
+			WIDTH = _this.width();
+			HEIGHT = _this.height();
+			ASPECT = WIDTH / HEIGHT;
+
+		
+			
+			renderer.setSize(WIDTH,HEIGHT);
+			// render
+			renderer.render(scene, camera);	 
+			// request new frame
+			requestAnimationFrame(function(){animate();});
+		}			
+
+	});
+
+	$('.quilia-container .quilia-menu .quilia-onda .text-menu').hover(function()
+	{
+		$(this).parent().find('.menu-onde').data( "over", 1);	
+	},function()
+	{
+		$(this).parent().find('.menu-onde').data( "over", 0);	
+	});
+	
+	$('.quilia-container .quilia-menu .quilia-onda .text-menu').click(function()
+	{
+		if($(this).parent().find('.menu-onde').hasClass('active'))
+		{
+			$(this).parent().removeClass('active');
+			$(this).parent().find('.menu-onde').removeClass('active');
+		}
+		else
+		{
+			$(this).parent().addClass('active');
+			$(this).parent().find('.menu-onde').addClass('active');	
+		}
+	});
+	
+	$('.quilia-container .quilia-menu .quilia-onda .quilia-only-onda ul li').click(function()
+	{
+		$(this).parents('.quilia-only-onda').find('.menu-onde').data('href',$(this).find('a').attr('href'));
+		$(this).parents('.quilia-only-onda').find('.menu-onde').removeClass('active');
+		return false;
+	});
+	
+	$('.quilia-container .quilia-menu .quilia-onda .quilia-only-onda .menu-onde').on('waveClose',function()
+	{
+		if($(this).data('href')!="undefined" && $(this).data('href')!=null)
+		{
+			window.location.href = $(this).data('href');
+		}
+		$(this).data('over',0);
+	});
+	
+	$('.quilia-group-goccia .text-menu').click(function(e) {
+		var _this=$(this);
+		var Goccia=_this.parent();
+		
+        if(Goccia.hasClass('active'))//Nascondi il sottomenu
+		{
+			hideSubmenu($('.container-gocce .quilia-container ul.quilia-submenu[data-id="'+_this.attr('data-id-menu')+'"]'));
+			Goccia.removeClass('active').addClass('deactive');
+		}
+		else
+		{
+			if($('.quilia-group-goccia.active').length)//Nascondi altri sottomenu
+			{
+				for(var i=0;i<$('.quilia-group-goccia.active').length;i++)
+				{
+					hideSubmenu($('.container-gocce .quilia-container ul.quilia-submenu[data-id="'+$('.quilia-group-goccia.active .text-menu').eq(i).attr('data-id-menu')+'"]'));
+					$('.quilia-group-goccia.active').eq(i).removeClass('active').addClass('deactive');
+				}
+			}
+			
+			Goccia.removeClass('deactive').addClass('active');//Visualizza il sottomenu scelto
+			showSubmenu($('.container-gocce .quilia-container ul.quilia-submenu[data-id="'+_this.attr('data-id-menu')+'"]'));
+		}
     });
-    var n = false;
-    /*
-    $(".quilia-onda .text-menu").mouseenter(function () {
-        if (!n) {
-            var r = $(this).attr("data-id-menu");
-            if ($(".menu-onde.active").length && r != $(".menu-onde.active").attr("data-id-menu")) {
-                t($(".menu-onde.active").attr("data-id-menu"))
-            }
-            e(r)
-        }
-    });
-    */
-    $(".quilia-onda").mouseenter(function () {
-        if (!n) {
-            var r = $(this).children('.text-menu').attr("data-id-menu");
-            if ($(".menu-onde.active").length && r != $(".menu-onde.active").attr("data-id-menu")) {
-                t($(".menu-onde.active").attr("data-id-menu"))
-            }
-            e(r)
-        }
-    });
-    $(".quilia-onda").mouseleave(function () {
-        if (!n) {
-            var r = $(this).children('.text-menu').attr("data-id-menu");
-            if ($(".menu-onde.active").length ==0 && r == $(".menu-onde.active").attr("data-id-menu")) {
-                e($(".menu-onde.active").attr("data-id-menu"))
-            }
-            t(r)
-        }
-    });
-    /*
-    $(".quilia-onda .text-menu").click(function () {
-        var n = $(this).parents(".quilia-onda");
-        var r = $(this).parents(".quilia-container");
-        if (!r.hasClass("active")) {
-            if (n.find(".menu-onde.active").length) {
-                t($(this).attr("data-id-menu"))
-            } else {
-                var i = $(this).attr("data-id-menu");
-                if ($(".menu-onde.active").length && i != $(".menu-onde.active").attr("data-id-menu")) {
-                    t($(".menu-onde.active").attr("data-id-menu"))
-                }
-                e(i)
-            }
-        } else {
-            if (n.find(".quilia-menu-active").is(":visible")) {
-                n.find(".quilia-menu-active").slideUp(150)
-            } else {
-                if (r.find(".quilia-onda.active").length && !n.hasClass("active")) {
-                    r.find(".quilia-onda.active .quilia-menu-active").slideUp(150);
-                    r.find(".quilia-onda.active").removeClass("active")
-                }
-                n.addClass("active");
-                n.find(".quilia-menu-active").slideDown(350)
-            }
-        }
-    });
-    */
-    /*
-    $(".quilia-only-onda ul li").click(function() {
-        n = true;
-        var e = $('.quilia-menu-active li.active');
-        setTimeout(function () {
-            t($('.menu-onde.active').attr('data-id-menu'));
-            e.parents(".quilia-menu").find(".quilia-only-onda").slideUp(350, function () {
-                e.parents(".quilia-container").addClass("active");
-                e.parents(".quilia-onda").addClass("active")
-            })
-        }, 1200)
-    })
-    */
-    $(".quilia-only-onda ul li a, .text-menu a").click(function(ev) {
-        n = true;
-        ev.preventDefault();
-        $('.quilia-onda').each(function(k, v) {
-            t($(v).find('.text-menu').attr('data-id-menu'));
-        });
-        $(".quilia-onda").unbind();
-        setTimeout(function() {
-            console.log(ev.currentTarget.href);
-            window.location = ev.currentTarget.href;
-        }, 2000);       // stesso tempo impostato nella transition CSS
-    })
+	
+	function hideSubmenu(_this)
+	{
+		_this.fadeOut(150);
+	}
+	
+	function showSubmenu(_this)
+	{
+		var ListLi=_this.find('li');
+		if(ListLi.length)
+		{
+			var TitleMenu=_this.parent().find('.text-menu[data-id-menu="'+_this.attr('data-id')+'"] .title-menu');
+
+			_this.css('left',(TitleMenu.position().left+TitleMenu.outerWidth(true)+10)+'px');
+			_this.css('bottom','0px');
+			_this.delay(600).fadeIn(350);
+		}
+	}
 });

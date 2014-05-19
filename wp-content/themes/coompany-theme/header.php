@@ -47,9 +47,8 @@
 	<body>
 
 		<div class="container">
-
-			<?php if(!is_home()) : ?>
-			<div class="row">
-				<?php echo get_template_part('navbar'); ?>
-			</div>
-			<?php endif; ?>
+            <?php
+            if(!is_home()) {
+                echo get_template_part('navbar');
+            }
+            ?>

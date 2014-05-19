@@ -63,78 +63,108 @@ class wp_quilia_navwalker extends Walker_Nav_Menu {
 	public function end_lvl( &$output, $depth = 0, $args = array() ) {}
 	
 
-	public function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
-
+	public function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 )
+	{
 		if($depth==0)
 		{
 			$this->ParamsMenu=qcode_parse(str_replace(" ","",$item->description));
 		}
 		
-		//Primo livello - Genera onde + nome menu
-		if($depth==0 && $args->sottomenu==0)
-		{		
-			$this->NMenu=$item->ID;
-			$output.='<div class="quilia-onda col-lg-'.$this->ParamsMenu['col-lg'].' col-md-'.$this->ParamsMenu['col-md'].' col-sm-'.$this->ParamsMenu['col-sm'].' col-xs-'.$this->ParamsMenu['col-xs'].'">';	
-			$this->HasSubMenu[$this->NMenu]=false;
-			// Commented in order to have
-            // the wave also on menu elements
-            // that doesn't have children elements
-			//if($args->has_children)
-			{	
-				$this->HasSubMenu[$this->NMenu]=true;
-				$output.='<div class="quilia-only-onda"><canvas data-id-menu="'.$this->NMenu.'" class="menu-onde" data-color="'.$this->ParamsMenu['color'].'"></canvas><ul>';
+		if(is_home())
+		{
+			//Primo livello - Genera onde + nome menu
+			if($depth==0 && $args->sottomenu==0)
+			{		
+				$this->NMenu=$item->ID;
+				$output.='<div class="quilia-onda col-lg-'.$this->ParamsMenu['col-lg'].' col-md-'.$this->ParamsMenu['col-md'].' col-sm-'.$this->ParamsMenu['col-sm'].' col-xs-'.$this->ParamsMenu['col-xs'].'">';	
+				$this->HasSubMenu[$this->NMenu]=false;
+				if($args->has_children)
+				{	
+					$this->HasSubMenu[$this->NMenu]=true;
+					$output.='<div class="quilia-only-onda"><canvas data-id-menu="'.$this->NMenu.'" class="menu-onde" data-color="'.$this->ParamsMenu['color'].'"></canvas><ul>';
+				}
+			}
+			else if($depth==1 && $args->sottomenu==1)//Primo livello - Genera lista sotto categorie
+			{
+				$output.="menu ".$item->description;
+			}
+			else if($depth==1) //Sotto menu di secondo livello (I MENU DELLE ONDE)
+			{
+				$countMenu=count($this->ListSubMenu[$this->NMenu])-1;
+				$this->ListSubMenu[$this->NMenu][]=array('title'=>$item->title,'url'=>$item->url);
+				$output.='<li><a href="'.$item->url.'">'.$item->title.'</a></li>';
 			}
 		}
-		else if($depth==1 && $args->sottomenu==1)//Primo livello - Genera lista sotto categorie
+		else
 		{
-			$output.="menu ".$item->description;
-		}
-		else if($depth==1) //Sotto menu di secondo livello (I MEN DELLE ONDE)
-		{
-			$countMenu=count($this->ListSubMenu[$this->NMenu]);
-			$this->ListSubMenu[$this->NMenu][$countMenu]['title']=$item->title;
-			$this->ListSubMenu[$this->NMenu][$countMenu]['url']=$item->url;
-            // EDITED HERE
-			$output.='<li><span class="quilia-extension">&nbsp;</span><a href="'.$item->url.'">'.$item->title.'</a></li>';
+			if($depth==0 && $args->sottomenu==0)
+			{		
+				$this->NMenu=$item->ID;
+				$output.='<div class="quilia-group-goccia col-lg-'.$this->ParamsMenu['col-lg'].' col-md-'.$this->ParamsMenu['col-md'].' col-sm-'.$this->ParamsMenu['col-sm'].' col-xs-'.$this->ParamsMenu['col-xs'].'">';	
+				$this->HasSubMenu[$this->NMenu]=false;
+				if($args->has_children)
+				{	
+					$this->HasSubMenu[$this->NMenu]=true;
+					$output.='<div class="quilia-only-goccia"><div class="gocciaAnim"></div>';
+				}
+			}
+			else if($depth==1) //Sotto menu di secondo livello (I MENU DELLE ONDE)
+			{
+				$countMenu=count($this->ListSubMenu[$this->NMenu])-1;
+				$this->ListSubMenu[$this->NMenu][]=array('title'=>$item->title,'url'=>$item->url);
+			}
 		}
 	}
 	
-	public function end_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
-		
+	public function end_el( &$output, $item, $depth = 0, $args = array(), $id = 0 )
+	{
 		if($depth==0)
 		{
 			$this->ParamsMenu="";
 		}
-		
-		//Primo livello - Genera onde + nome menu
-		if($depth==0 && $args->sottomenu==0)
+	
+		if(is_home())
 		{
-			if($this->HasSubMenu[$this->NMenu])
+			//Primo livello - Genera onde + nome menu
+			if($depth==0 && $args->sottomenu==0)
 			{
-				$output.='</ul></div>';	
+				if($this->HasSubMenu[$this->NMenu])
+				{
+					$output.='</ul></div>';	
+				}
+				$output.='<div class="text-menu" data-id-menu="'.$this->NMenu.'">'.$item->title.'</div>';
+				
+				$output.='</div>';
+				$this->NMenu="";	
 			}
-            if($item->url != '#') {
-                // EDITED HERE!
-                $output.='<div class="text-menu'.((("http://".$_SERVER['HTTP_HOST'].$_SERVER["REQUEST_URI"])==$item->url) ? (' active') : (null)).'" data-id-menu="'.$this->NMenu.'"><a href="'.$item->url.'">'.$item->title.'</a></div>';
-            } else {
-                $output.='<div class="text-menu" data-id-menu="'.$this->NMenu.'">'.$item->title.'</div>';
-            }
-			if($this->HasSubMenu[$this->NMenu] && is_array($this->ListSubMenu[$this->NMenu]) && count($this->ListSubMenu[$this->NMenu])>0)
+		}
+		else
+		{
+			//Primo livello - Genera onde + nome menu
+			if($depth==0 && $args->sottomenu==0)
 			{
-				$output.='<ul class="quilia-menu-active">';
-					foreach($this->ListSubMenu[$this->NMenu] as $SubMenu)
-					{
-						$output.='<li ';
-						if(("http://".$_SERVER['HTTP_HOST'].$_SERVER["REQUEST_URI"])==$SubMenu['url'])
+				if($this->HasSubMenu[$this->NMenu])
+				{
+					$output.='</div>';	
+				}
+				$output.='<div class="text-menu" data-id-menu="'.$this->NMenu.'"><span class="title-menu">'.$item->title.'</span></div>';
+				$output.='</div>';
+				if($this->HasSubMenu[$this->NMenu] && is_array($this->ListSubMenu[$this->NMenu]) && count($this->ListSubMenu[$this->NMenu])>0)
+				{
+					$output.='<ul class="quilia-submenu" data-id="'.$this->NMenu.'">';
+						foreach($this->ListSubMenu[$this->NMenu] as $SubMenu)
 						{
-							$output.='class="active"';	
+							$output.='<li ';
+							if(("http://".$_SERVER['HTTP_HOST'].$_SERVER["REQUEST_URI"])==$SubMenu['url'])
+							{
+								$output.='class="active"';	
+							}
+							$output.='><a href="'.$SubMenu['url'].'">'.$SubMenu['title'].'</a></li>';
 						}
-						$output.='><a href="'.$SubMenu['url'].'">'.$SubMenu['title'].'</a></li>';
-					}
-				$output.='</ul>';	
-			}
-			$output.='</div>';
-			$this->NMenu="";	
+					$output.='</ul>';	
+				}
+				$this->NMenu="";	
+			}	
 		}
 	}
 
@@ -158,7 +188,8 @@ class wp_quilia_navwalker extends Walker_Nav_Menu {
 	 * @param string $output Passed by reference. Used to append additional content.
 	 * @return null Null on failure with no changes to parameters.
 	 */
-	public function display_element( $element, &$children_elements, $max_depth, $depth, $args, &$output ) {
+	public function display_element( $element, &$children_elements, $max_depth, $depth, $args, &$output )
+	{
         if ( ! $element )
             return;
         $id_field = $this->db_fields['id'];
@@ -181,7 +212,8 @@ class wp_quilia_navwalker extends Walker_Nav_Menu {
 	 * @param array $args passed from the wp_nav_menu function.
 	 *
 	 */
-	public static function fallback( $args ) {
+	public static function fallback( $args )
+	{
 		if ( current_user_can( 'manage_options' ) ) {
 
 			extract( $args );

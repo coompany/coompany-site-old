@@ -8,10 +8,9 @@
  */
 
 echo get_header();
-?>
 
-			<div id="home-navbar" class="jumbotron">
-				<?php echo get_template_part('navbar'); ?>
-			</div>
 
-<?php echo get_footer('index'); ?>
+ echo get_template_part('navbar');
+
+
+ echo get_footer('index'); ?>
