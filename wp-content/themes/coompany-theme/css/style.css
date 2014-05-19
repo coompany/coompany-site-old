@@ -5983,116 +5983,125 @@ body > .container .navbar .navbar-header .navbar-brand img {
   width: 100px;
 }
 body > .container .navbar #menu-row {
-  display: flex;
   position: relative;
-  border-top: 2px solid #000000;
-}
-body > .container .navbar #menu-row .quilia-container {
-  background-color: #f1f1f1;
-}
-body > .container .navbar #menu-row .quilia-container.active {
-  padding-top: 0px;
-}
-body > .container .navbar #menu-row .quilia-container.active .quilia-menu .quilia-onda .text-menu {
-  margin-top: 0px;
-  padding-top: 20px;
-}
-body > .container .navbar #menu-row .quilia-container.active .quilia-menu .quilia-onda .text-menu::after {
-  height: 15px;
-  width: 32px;
-}
-body > .container .navbar #menu-row .quilia-container .quilia-menu::before {
-  border-bottom: 0px solid transparent;
-}
-body > .container .navbar #menu-row .quilia-container .quilia-menu::after {
-  border-bottom: 2px solid #333333;
-  width: 100%;
-  display: block;
-  bottom: 72px;
-  position: relative;
-}
-body > .container .navbar #menu-row .quilia-container .quilia-menu .quilia-onda {
-  font-size: 14px;
-  margin-bottom: 10px;
-}
-body > .container .navbar #menu-row .quilia-container .quilia-menu .quilia-onda ul li {
-  background-color: #333;
-  padding: 0px 10px 4px 10px;
-  line-height: 13px;
-  overflow: visible;
-  text-align: center;
-}
-body > .container .navbar #menu-row .quilia-container .quilia-menu .quilia-onda ul li .quilia-extension {
-  background-color: #333;
-  min-height: 4px;
-  max-height: 4px;
-  padding: 0px;
-  position: relative;
-  display: block;
-}
-body > .container .navbar #menu-row .quilia-container .quilia-menu .quilia-onda ul li a {
-  color: #eeeeee;
-  font-size: 12px;
-  font-weight: bold;
-}
-body > .container .navbar #menu-row .quilia-container .quilia-menu .quilia-onda ul li a:hover {
-  font-style: normal;
-}
-body > .container .navbar #menu-row .quilia-container .quilia-menu .quilia-onda .text-menu {
-  z-index: 1000;
-  position: relative;
-  margin-top: 10px;
-}
-body > .container .navbar #menu-row .quilia-container .quilia-menu .quilia-onda .text-menu a {
-  color: #333333;
-}
-body > .container .navbar #menu-row .quilia-container .quilia-menu .quilia-onda .quilia-only-onda {
-  -webkit-transition: all 2s;
-  transition: all 2s;
-  max-height: 0px;
-}
-body > .container .navbar #menu-row .quilia-container .quilia-menu .quilia-onda .quilia-only-onda canvas.menu-onde {
-  margin-top: 8px;
-  z-index: 0;
-  position: relative;
-}
-body > .container .navbar #menu-row .nav.navbar-nav {
-  margin: 0 auto;
-}
-body > .container .navbar #menu-row .nav.navbar-nav > li {
-  margin: 0px 32px;
-}
-body > .container .navbar #menu-row .nav.navbar-nav > li a {
-  color: #000000;
-  font-size: 14px;
-}
-body > .container .navbar #menu-row .nav.navbar-nav > li ul.dropdown-menu {
-  background-color: #000000;
-  padding: 0px;
-  border-width: 0px;
-}
-body > .container .navbar #menu-row .nav.navbar-nav > li ul.dropdown-menu li {
-  margin-bottom: 8px;
-}
-body > .container .navbar #menu-row .nav.navbar-nav > li ul.dropdown-menu li a {
-  margin: 0px;
-  color: #ffffff;
-  font-weight: 300;
-  padding: 0px 18px;
-}
-body > .container .navbar #menu-row .nav.navbar-nav > li ul.dropdown-menu li.active,
-body > .container .navbar #menu-row .nav.navbar-nav > li ul.dropdown-menu li a:hover {
-  background-color: #333333;
-  color: #ffffff;
-}
-body > .container .navbar #menu-row .nav.navbar-nav > li ul.dropdown-menu li.menu {
-  line-height: 6px;
-  width: 110%;
-  background-color: #000000;
-  position: relative;
-  left: -16px;
-  margin-bottom: 0px;
-  border-radius: 16px;
+  /*
+        display: flex;
+        border-top: 2px solid #000000;
+        //background-color: lighten(@bg-color, 3%);
+        // wave menu style
+        .quilia-container {
+          background-color: lighten(@bg-color, 3%);
+          &.active {
+            padding-top: 0px;
+            .quilia-menu .quilia-onda .text-menu {
+              margin-top: 0px;
+              padding-top: 20px;
+              &::after {
+                height: 15px;
+                width: 32px;
+              }
+            }
+          }
+          .quilia-menu {
+            &::before {
+              border-bottom: 0px solid transparent;
+              //border-bottom: 1px solid #333;
+            }
+            &::after {
+              border-bottom: 2px solid @gray-dark;
+              width: 100%;
+              display: block;
+              bottom: 72px;
+              position: relative;
+            }
+            .quilia-onda {
+              font-size: 14px;
+              margin-bottom: 10px;
+              ul {
+                li {
+                  background-color: #333;
+                  padding: 0px 10px 4px 10px;
+                  line-height: 13px;
+                  overflow: visible;
+                  text-align: center;
+                  .quilia-extension {
+                    background-color: #333;
+                    min-height: 4px;
+                    max-height: 4px;
+                    padding: 0px;
+                    position: relative;
+                    display: block;
+                  }
+                  a {
+                    color: @gray-lighter;
+                    font-size: 12px;
+                    font-weight: bold;
+                    &:hover {
+                      font-style: normal;
+                    }
+                  }
+                }
+              }
+              .text-menu {
+                z-index: 1000;
+                position: relative;
+                margin-top: 10px;
+                a {
+                  color: @gray-dark;
+                }
+              }
+              .quilia-only-onda {
+                .transition(all 2s);
+                max-height: 0px;
+                canvas.menu-onde {
+                  margin-top: 8px;
+                  z-index: 0;
+                  position: relative;
+                }
+              }
+            }
+          }
+        }
+        // basic menu style
+        .nav.navbar-nav {
+          margin: 0 auto;
+          & > li {
+            margin: 0px 32px;
+            a {
+              color: #000000;
+              font-size: 14px;
+            }
+            ul.dropdown-menu {
+              background-color: #000000;
+              padding: 0px;
+              border-width: 0px;
+              li {
+                margin-bottom: 8px;
+                a {
+                  margin: 0px;
+                  color: #ffffff;
+                  font-weight: 300;
+                  padding: 0px 18px;
+                }
+              }
+              li.active, li a:hover {
+                background-color: lighten(#000000, 20%);
+                color: #ffffff;
+              }
+              li.menu {
+                line-height: 6px;
+                width: 110%;
+                background-color: #000000;
+                position: relative;
+                left: -16px;
+                margin-bottom: 0px;
+                border-radius: 16px;
+              }
+            }
+          }
+        }
+        */
+
 }
 body > .container .navbar.navbar-fixed-top > .row {
   max-width: 1170px;
