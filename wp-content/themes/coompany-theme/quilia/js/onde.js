@@ -537,6 +537,7 @@ jQuery(document).ready(function($)
 		}, 500);	
 	},function()
 	{
+        var _this = $(this);
 		_this.parent().find('.menu-onde').data( "over", 0);
 		clearTimeout(delayTimeout);
 		var _this=$(this);
@@ -620,31 +621,31 @@ jQuery(document).ready(function($)
 	}
 });
 
-$(window).load(function()
+jQuery(window).load(function()
 {
 	logo();
 });
 
-$(window).resize(function()
+jQuery(window).resize(function()
 {
 	logo();
 });
 
 function logo()
 {
-	if($('.logo').length)
+	if(jQuery('.logo').length)
 	{
-		if(!$('.logo').hasClass('block-logo'))
+		if(!jQuery('.logo').hasClass('block-logo'))
 		{
-			$('.logo').css('bottom','-'+(parseInt($('#menu-row div').css('margin-top').replace('px',''))+$('#menu-row .quilia-onda').eq(0).outerHeight(true)-40)+'px');
+            jQuery('.logo').css('bottom','-'+(parseInt(jQuery('#menu-row div').css('margin-top').replace('px',''))+jQuery('#menu-row .quilia-onda').eq(0).outerHeight(true)-40)+'px');
 		}
 	}
 }
 
 function goto_top_logo(Duration)
 {
-	if($('.logo').length)
+	if(jQuery('.logo').length)
 	{
-		$('.logo').animate({bottom:0},Duration,function(){$(this).addClass('block-logo');});
+        jQuery('.logo').animate({bottom:0},Duration,function(){jQuery(this).addClass('block-logo');});
 	}
 }
