@@ -510,32 +510,60 @@ jQuery(document).ready(function($)
 
 	});
 
+	var delayTimeout;
 	$('.quilia-container .quilia-menu .quilia-onda .text-menu').hover(function()
 	{
-		$(this).parent().find('.menu-onde').data( "over", 1);	
+		goto_top_logo(1500);
+		var _this=$(this);
+		_this.parent().find('.menu-onde').data( "over", 1);
+		delayTimeout=setTimeout(function()
+		{
+			var OndeActive=_this.parents('.quilia-container').find('.menu-onde.active');
+			if(OndeActive.length)
+			{
+				for(var i=0;i<OndeActive.length;i++)
+				{
+					if(!OndeActive.eq(i).hasClass('active-fixed'))
+					{
+						OndeActive.eq(i).removeClass('active');
+					}
+				}
+			}
+			if(!_this.parent().find('.menu-onde').hasClass('active-fixed') && !_this.parent().find('.menu-onde').hasClass('active'))
+			{
+				_this.parent().find('.menu-onde').addClass('active');
+			}
+			_this.parent().find('.menu-onde').data( "over", 0);
+		}, 500);	
 	},function()
 	{
-		$(this).parent().find('.menu-onde').data( "over", 0);	
+		_this.parent().find('.menu-onde').data( "over", 0);
+		clearTimeout(delayTimeout);
+		var _this=$(this);
+		if(!_this.parent().find('.menu-onde').hasClass('active-fixed') && _this.parent().find('.menu-onde').hasClass('active'))
+		{
+			_this.parent().find('.menu-onde').removeClass('active');
+		}
 	});
 	
 	$('.quilia-container .quilia-menu .quilia-onda .text-menu').click(function()
 	{
-		if($(this).parent().find('.menu-onde').hasClass('active'))
+		if($(this).parent().find('.menu-onde').hasClass('active-fixed'))
 		{
 			$(this).parent().removeClass('active');
-			$(this).parent().find('.menu-onde').removeClass('active');
+			$(this).parent().find('.menu-onde').removeClass('active').removeClass('active-fixed');
 		}
 		else
 		{
 			$(this).parent().addClass('active');
-			$(this).parent().find('.menu-onde').addClass('active');	
+			$(this).parent().find('.menu-onde').addClass('active').addClass('active-fixed');	
 		}
 	});
 	
 	$('.quilia-container .quilia-menu .quilia-onda .quilia-only-onda ul li').click(function()
 	{
 		$(this).parents('.quilia-only-onda').find('.menu-onde').data('href',$(this).find('a').attr('href'));
-		$(this).parents('.quilia-only-onda').find('.menu-onde').removeClass('active');
+		$(this).parents('.quilia-container').find('.menu-onde').removeClass('active').removeClass('active-fixed');
 		return false;
 	});
 	
@@ -591,3 +619,32 @@ jQuery(document).ready(function($)
 		}
 	}
 });
+
+$(window).load(function()
+{
+	logo();
+});
+
+$(window).resize(function()
+{
+	logo();
+});
+
+function logo()
+{
+	if($('.logo').length)
+	{
+		if(!$('.logo').hasClass('block-logo'))
+		{
+			$('.logo').css('bottom','-'+(parseInt($('#menu-row div').css('margin-top').replace('px',''))+$('#menu-row .quilia-onda').eq(0).outerHeight(true)-40)+'px');
+		}
+	}
+}
+
+function goto_top_logo(Duration)
+{
+	if($('.logo').length)
+	{
+		$('.logo').animate({bottom:0},Duration,function(){$(this).addClass('block-logo');});
+	}
+}

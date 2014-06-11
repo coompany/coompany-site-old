@@ -116,6 +116,7 @@
 .quilia-group-goccia .gocciaAnim
 {
 	margin:0 auto;
+	margin-top:-1px;
 }
 
 .quilia-group-goccia.deactive .gocciaAnim
@@ -123,24 +124,13 @@
 	background: url("../img/Goccia.png") 0 0 no-repeat; 
 	width: 40px;
 	height: 30px;
+	margin-top:-1px;
 	
-	-webkit-animation: gocciaAnimDeactive 1s steps(24) 1;
-	-moz-animation: gocciaAnimDeactive 1s steps(24) 1;
-	-ms-animation: gocciaAnimDeactive 1s steps(24) 1;
-	-o-animation: gocciaAnimDeactive 1s steps(24) 1;
-	animation: gocciaAnimDeactive 1s steps(24) 1;
-	
-	-webkit-animation-delay: 0s;
-	-moz-animation-delay: 0s;
-	-ms-animation-delay: 0s;
-	-o-animation-delay: 0s;
-	animation-delay: 0s;
-	
-	-webkit-animation-fill-mode:forwards;
-	-moz-animation-fill-mode:forwards;
-	-ms-animation-fill-mode:forwards;
-	-o-animation-fill-mode:forwards;
-	animation-fill-mode:forwards;
+	-webkit-animation: gocciaAnimDeactive forwards 1s steps(24) 1;
+	-moz-animation: gocciaAnimDeactive forwards 1s steps(24) 1;
+	-ms-animation: gocciaAnimDeactive forwards 1s steps(24) 1;
+	-o-animation: gocciaAnimDeactive forwards 1s steps(24) 1;
+	animation: gocciaAnimDeactive forwards 1s steps(24) 1;
 }
 
 
@@ -150,23 +140,11 @@
 	width: 40px;
 	height: 30px;
 	
-	-webkit-animation: gocciaAnim 1s steps(24) 1;
-	-moz-animation: gocciaAnim 1s steps(24) 1;
-	-ms-animation: gocciaAnim 1s steps(24) 1;
-	-o-animation: gocciaAnim 1s steps(24) 1;
-	animation: gocciaAnim 1s steps(24) 1;
-	
-	-webkit-animation-delay: 0s;
-	-moz-animation-delay: 0s;
-	-ms-animation-delay: 0s;
-	-o-animation-delay: 0s;
-	animation-delay: 0s;
-	
-	-webkit-animation-fill-mode:forwards;
-	-moz-animation-fill-mode:forwards;
-	-ms-animation-fill-mode:forwards;
-	-o-animation-fill-mode:forwards;
-	animation-fill-mode:forwards;
+	-webkit-animation: gocciaAnim forwards 1s steps(24) 1;
+	-moz-animation: gocciaAnim forwards 1s steps(24) 1;
+	-ms-animation: gocciaAnim forwards 1s steps(24) 1;
+	-o-animation: gocciaAnim forwards 1s steps(24) 1;
+	animation: gocciaAnimforwards 1s steps(24) 1;
 }
 
 @keyframes gocciaAnim
@@ -226,4 +204,10 @@
 	0% {background-position: -960px 0; }
 	50% { height: 30px;}
 	100% {background-position: 0 0; height:0;}        
+}
+
+.logo
+{
+	position:absolute;
+	z-index:99999;	
 }
