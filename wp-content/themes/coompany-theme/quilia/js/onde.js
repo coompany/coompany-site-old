@@ -8,7 +8,7 @@ jQuery(document).ready(function($)
 	
 		// Imposta le dimensioni del renderer
 		var WIDTH = _this.width(), HEIGHT = _this.height();
-		var borderY = 20;
+		var borderY = 0;
 		var borderX = 50;
 	
 		// Variabili globali
@@ -510,13 +510,15 @@ jQuery(document).ready(function($)
 
 	});
 
-	var delayTimeout;
+	var delayTimeoutOut,
+		delayTimeoutIn;
 	$('.quilia-container .quilia-menu .quilia-onda .text-menu').hover(function()
 	{
 		goto_top_logo(1500);
 		var _this=$(this);
 		_this.parent().find('.menu-onde').data( "over", 1);
-		delayTimeout=setTimeout(function()
+		clearTimeout(delayTimeoutOut);
+		delayTimeoutIn=setTimeout(function()
 		{
 			var OndeActive=_this.parents('.quilia-container').find('.menu-onde.active');
 			if(OndeActive.length)
@@ -534,16 +536,32 @@ jQuery(document).ready(function($)
 				_this.parent().find('.menu-onde').addClass('active');
 			}
 			_this.parent().find('.menu-onde').data( "over", 0);
-		}, 500);	
+		}, 400);	
 	},function()
 	{
-        var _this = $(this);
-		_this.parent().find('.menu-onde').data( "over", 0);
-		clearTimeout(delayTimeout);
 		var _this=$(this);
-		if(!_this.parent().find('.menu-onde').hasClass('active-fixed') && _this.parent().find('.menu-onde').hasClass('active'))
+		clearTimeout(delayTimeoutIn);
+		delayTimeoutOut=setTimeout(function()
 		{
-			_this.parent().find('.menu-onde').removeClass('active');
+			_this.parent().find('.menu-onde').data( "over", 0);
+			if(!_this.parent().find('.menu-onde').hasClass('active-fixed') && _this.parent().find('.menu-onde').hasClass('active'))
+			{
+				_this.parent().find('.menu-onde').removeClass('active');
+			}
+		},500);
+	});
+	
+	$('.quilia-container .quilia-menu .quilia-onda .quilia-only-onda').mouseenter(function()
+	{
+		clearTimeout(delayTimeoutOut);
+	});
+	
+	$('.quilia-container .quilia-menu .quilia-onda .quilia-only-onda').mouseleave(function()
+	{
+		$(this).parent().find('.text-menu').parent().find('.menu-onde').data( "over", 0);
+		if(!$(this).parent().find('.text-menu').parent().find('.menu-onde').hasClass('active-fixed') && $(this).parent().find('.text-menu').parent().find('.menu-onde').hasClass('active'))
+		{
+			$(this).parent().find('.text-menu').parent().find('.menu-onde').removeClass('active');
 		}
 	});
 	

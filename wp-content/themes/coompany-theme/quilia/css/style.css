@@ -54,6 +54,12 @@
 	display: none;
 	padding-left: 10px;
 	padding-right: 10px;
+	background-color:#000;
+}
+
+.quilia-container .quilia-menu .quilia-only-onda li a
+{
+	color:#fff;	
 }
 
 .quilia-container .quilia-menu .text-menu
