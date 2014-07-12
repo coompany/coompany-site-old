@@ -10,7 +10,7 @@
 
 			<footer class="row">
 
-				<div class="col-xs-2 col-xs-offset-1">
+				<div class="footer-col">
 					<h6>Prodotti:</h6>
 					<?php
 					$products_terms = get_terms('prodotti', array('hide_empty'=>false));
@@ -23,24 +23,36 @@
 					}
 					?>
 				</div>
-				<div class="col-xs-2">
+				<div class="footer-col">
 					<h6>About:</h6>
 					<ul class="list-unstyled">
-						<li><a href="#">Chi siamo</a></li>
-						<li><a href="#">Contatti</a></li>
-						<li><a href="#">Team</a></li>
-						<li><a href="#">Work with us</a></li>
+						<li><a href="<?php echo get_bloginfo('url'); ?>/chi-siamo">Chi siamo</a></li>
+						<li><a href="<?php echo get_bloginfo('url'); ?>/chi-siamo">Contatti</a></li>
+						<li><a href="<?php echo get_bloginfo('url'); ?>/chi-siamo">Team</a></li>
+                        <li><a href="<?php echo get_bloginfo('url'); ?>/chi-siamo">Partners</a></li>
+						<li><a href="http://jobs.coompany.eu">Work with us</a></li>
 					</ul>
 				</div>
-				<div class="col-xs-2">
+				<div class="footer-col">
 					<h6>Connect:</h6>
 					<ul class="list-unstyled">
-						<li><a href="#">Facebook</a></li>
-						<li><a href="#">Twitter</a></li>
-						<li><a href="#">LinkedIn</a></li>
-						<li><a href="#">Bollenti Spiriti</a></li>
+						<li><a target="_blank" href="https://www.facebook.com/coompany.srls">Facebook</a></li>
+						<li><a target="_blank" href="https://twitter.com/CoompanySrls">Twitter</a></li>
+						<li><a target="_blank" href="https://www.linkedin.com/company/3364688">LinkedIn</a></li>
+						<!--<li><a target="_blank" href="http://bollentispiriti.regione.puglia.it/index.php?option=com_community&view=groups&task=viewgroup&groupid=1090&Itemid=1301340">Bollenti Spiriti</a></li>-->
 					</ul>
 				</div>
+
+                <div class="footer-col pull-right">
+                    <h6>Coompany S.r.l.s</h6>
+                    <p>
+                        <a target="_blank" href="http://maps.google.com/?q=Via%20Abate%20Gimma%20248%2070122%20Bari">
+                            Via Abate Gimma 248<br />
+                            70122 Bari<br />
+                        </a>
+                        <small>P.IVA  IT0752120723</small>
+                    </p>
+                </div>
 
 			</footer>
 

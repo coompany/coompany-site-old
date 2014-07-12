@@ -2270,8 +2270,8 @@ input[type="button"].btn-block {
 }
 @font-face {
   font-family: 'Glyphicons Halflings';
-  src: url('../../../fonts/glyphicons-halflings-regular.eot');
-  src: url('../../../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../../../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../../../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../../../fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
+  src: url('./../fonts/glyphicons-halflings-regular.eot');
+  src: url('./../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('./../fonts/glyphicons-halflings-regular.woff') format('woff'), url('./../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('./../fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
 }
 .glyphicon {
   position: relative;
@@ -5959,68 +5959,71 @@ td.visible-print {
   }
 }
 body {
-  padding-top: 105px;
+  padding-top: 135px;
   background-color: #e9e9e9;
 }
-body > .container #home-navbar {
+body #home-navbar {
   background-color: transparent;
   margin-top: 80px;
 }
-body > .container .navbar {
+body .navbar {
   background-color: #e9e9e9;
   padding-bottom: 14px;
 }
-body > .container .navbar .row:first-child {
+body .navbar .row:first-child {
   position: relative;
 }
-body > .container .navbar #menu-shadow {
+body .navbar #menu-shadow {
   -webkit-box-shadow: 0px 0px 12px #555555;
   box-shadow: 0px 0px 12px #555555;
   width: 70%;
   height: 1px;
   background-color: transparent;
 }
-body > .container .navbar .navbar-header .navbar-brand img {
+body .navbar .navbar-header .navbar-brand img {
   width: 100px;
 }
-body > .container .navbar #menu-row {
+body .navbar #menu-row {
   position: relative;
 }
-body > .container .navbar.navbar-fixed-top > .row {
+body .navbar.navbar-fixed-top > .row {
   max-width: 1170px;
   margin: 0 auto;
 }
-body > .container > .jumbotron {
+body > .jumbotron {
   margin: 30px auto;
   max-width: 800px;
 }
-body > .container #section-products .feature {
+body #section-products .feature {
   margin-bottom: 75px;
 }
-body > .container #section-products .feature .feature-bg {
+body #section-products .feature .feature-bg {
   background: transparent 50% 50% no-repeat fixed;
   margin-bottom: 25px;
 }
-body > .container #section-products .feature .content a.btn {
+body #section-products .feature .content p {
+  line-height: 24px;
+}
+body #section-products .feature .content a.btn {
   margin-top: 50px;
   margin-bottom: 10px;
   padding: 5px 22px;
 }
-body > .container #section-products .feature .media-content {
+body #section-products .feature .media-content {
   text-align: center;
 }
-body > .container #section-products .feature .media-content img,
-body > .container #section-products .feature .media-content iframe {
+body #section-products .feature .media-content img,
+body #section-products .feature .media-content iframe {
   max-width: 90%;
   max-height: 50%;
 }
-body > .container #section-news {
+body #section-news {
   margin-top: 60px;
 }
-body > .container #section-news .content {
+body #section-news .content {
   margin-top: 22px;
 }
-body > .container #section-news .news-image {
+body #section-news .news-image {
   background-repeat: no-repeat;
   background-position: 50% 50%;
   background-size: 100%;
@@ -6029,47 +6032,118 @@ body > .container #section-news .news-image {
   border: 4px solid #000;
   margin-bottom: 20px;
 }
-body > .container #section-news .news-time {
+body #section-news .news-time {
   color: #999999;
   font-weight: 300;
   font-size: 20px;
   text-transform: capitalize;
 }
-body > .container #section-news hr {
+body #section-news hr {
   border-top-color: #fff;
   border-top-width: 3px;
   box-shadow: 0px 0px 3px #ccc;
   margin-top: 30px;
   margin-bottom: 40px;
 }
-body > .container #page-contatti {
-  padding-top: 100px;
+body #page-contatti {
   text-align: right;
 }
-body > .container #page-contatti .content {
-  font-weight: 600;
+body #section-team-members {
+  margin-top: 80px;
 }
-body > .container #section-team-members .team-member {
+body #section-team-members .team-member {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 80px;
 }
-body > .container #section-team-members .team-member img.img-circle {
+body #section-team-members .team-member img.img-circle {
   max-width: 200px;
   margin: 0 auto;
   border: 8px solid #fff;
 }
-body > .container footer {
+body #section-team-members .team-member p.content {
+  text-align: justify;
+}
+body #istituzionale {
+  text-align: center;
+  margin-top: 100px;
+}
+body #istituzionale p {
+  font-size: 16px;
+  margin-bottom: 34px;
+  color: #999999;
+}
+body #istituzionale .logo-istituzionale > img {
+  max-height: 180px;
+}
+body #partners {
+  text-align: center;
+}
+body #partners h4 {
+  color: #999999;
+  margin-bottom: 24px;
+}
+body #partners .logo-partner img {
+  max-height: 140px;
+}
+body footer {
   background-color: #333333;
   color: #999999;
   font-weight: 300;
-  padding: 40px 0px;
+  padding: 30px 100px;
 }
-body > .container footer a {
+body footer a {
   color: #666666;
   font-size: 12px;
 }
+body footer .footer-col {
+  min-width: 85px;
+  float: left;
+  margin-right: 54px;
+}
+body footer .footer-col.pull-right {
+  margin-right: 0px;
+}
+a#coo2plan-big-link {
+  font-size: 24px;
+  color: #FF8800;
+  letter-spacing: 1px;
+}
+@media (max-width: 767px) {
+  body footer {
+    padding: 30px 10px;
+  }
+  body footer .footer-col {
+    margin-right: 4px;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  body footer {
+    padding: 30px 40px;
+  }
+  body footer .footer-col {
+    margin-right: 25px;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  body footer {
+    padding: 30px 60px;
+  }
+  body footer .footer-col {
+    margin-right: 25px;
+  }
+}
+@media (min-width: 1200px) {
+  
+}
 img {
   max-width: 100%;
+}
+hr {
+  border-top-color: #fff;
+  border-top-width: 1px;
+  box-shadow: 0px 0px 2px #ccc;
+  margin-top: 30px;
+  margin-bottom: 40px;
 }
 section.row {
   margin-bottom: 40px;

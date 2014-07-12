@@ -4,169 +4,246 @@
 
 @import "./vendor/bootstrap/bootstrap.less";
 
+@icon-font-path: './../fonts/';
+
 @bg-color: #e9e9e9;
 
 body {
 
-  padding-top: 105px;
+  padding-top: 135px;
 
   background-color: @bg-color;
 
-  & > .container {
+  #home-navbar {
+    background-color: transparent;
+    margin-top: 80px;
+  }
 
-    #home-navbar {
+  .navbar {
+    background-color: @bg-color;
+    padding-bottom: 14px;
+
+    .row:first-child {
+      position: relative;
+    }
+
+    #menu-shadow {
+      .box-shadow(0px 0px 12px @gray);
+      width: 70%;
+      height: 1px;
       background-color: transparent;
-      margin-top: 80px;
     }
 
-    .navbar {
-      background-color: @bg-color;
-      padding-bottom: 14px;
-
-      .row:first-child {
-        position: relative;
-      }
-
-      #menu-shadow {
-        .box-shadow(0px 0px 12px @gray);
-        width: 70%;
-        height: 1px;
-        background-color: transparent;
-      }
-
-      .navbar-header {
-        .navbar-brand {
-          img {
-            width: 100px;
-          }
+    .navbar-header {
+      .navbar-brand {
+        img {
+          width: 100px;
         }
       }
+    }
 
-      #menu-row {
-        position: relative;
-      }
+    #menu-row {
+      position: relative;
+    }
 
-      &.navbar-fixed-top {
+    &.navbar-fixed-top {
 
-        & > .row {
-          max-width: @container-large-desktop;
-          margin: 0 auto;
-        }
-
+      & > .row {
+        max-width: @container-large-desktop;
+        margin: 0 auto;
       }
 
     }
 
-    & > .jumbotron {
-      margin: 30px auto;
-      max-width: 800px;
-    }
+  }
 
-    #section-products {
+  & > .jumbotron {
+    margin: 30px auto;
+    max-width: 800px;
+  }
 
-      .feature {
-        margin-bottom: 75px;
+  #section-products {
 
-        .feature-bg {
-          background: transparent 50% 50% no-repeat fixed;
-          margin-bottom: 25px;
-        }
+    .feature {
+      margin-bottom: 75px;
 
-        .content {
-          a.btn {
-            margin-top: 50px;
-            margin-bottom: 10px;
-            padding: 5px 22px;
-          }
-        }
-
-        .media-content {
-          text-align: center;
-          img, iframe {
-            max-width: 90%;
-            max-height: 50%;
-          }
-        }
-
+      .feature-bg {
+        background: transparent 50% 50% no-repeat fixed;
+        margin-bottom: 25px;
       }
-
-    }
-
-    #section-news {
-      margin-top: 60px;
 
       .content {
-        margin-top: 22px;
+        p {
+          line-height: 24px;
+        }
+        a.btn {
+          margin-top: 50px;
+          margin-bottom: 10px;
+          padding: 5px 22px;
+        }
       }
 
-      .news-image {
-        background-repeat: no-repeat;
-        background-position: 50% 50%;
-        background-size: 100%;
-        min-height: 300px;
-        min-width: 100%;
-        border: 4px solid #000;
-        margin-bottom: 20px;
-      }
-
-      .news-time {
-        color: @gray-light;
-        font-weight: 300;
-        font-size: 20px;
-        text-transform: capitalize;
-      }
-
-      hr {
-        border-top-color: #fff;
-        border-top-width: 3px;
-        box-shadow: 0px 0px 3px #ccc;
-        margin-top: 30px;
-        margin-bottom: 40px;
-      }
-
-    }
-
-    #page-contatti {
-      padding-top: 100px;
-      text-align: right;
-      .content {
-        font-weight: 600;
-      }
-    }
-
-    #section-team-members{
-
-      .team-member {
+      .media-content {
         text-align: center;
-        margin-bottom: 30px;
-        img.img-circle {
-          max-width: 200px;
-          margin: 0 auto;
-          border: 8px solid #fff;
+        img, iframe {
+          max-width: 90%;
+          max-height: 50%;
         }
       }
 
     }
 
-    footer {
-      background-color: #333333;
-      color: #999999;
+  }
+
+  #section-news {
+    margin-top: 60px;
+
+    .content {
+      margin-top: 22px;
+    }
+
+    .news-image {
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+      background-size: 100%;
+      min-height: 300px;
+      min-width: 100%;
+      border: 4px solid #000;
+      margin-bottom: 20px;
+    }
+
+    .news-time {
+      color: @gray-light;
       font-weight: 300;
-      padding: 40px 0px;
-      a {
-        color: #666666;
-        font-size: 12px;
+      font-size: 20px;
+      text-transform: capitalize;
+    }
+
+    hr {
+      border-top-color: #fff;
+      border-top-width: 3px;
+      box-shadow: 0px 0px 3px #ccc;
+      margin-top: 30px;
+      margin-bottom: 40px;
+    }
+
+  }
+
+  #page-contatti {
+    text-align: right;
+  }
+
+  #section-team-members{
+
+    margin-top: 80px;
+    .team-member {
+      text-align: center;
+      margin-bottom: 80px;
+      img.img-circle {
+        max-width: 200px;
+        margin: 0 auto;
+        border: 8px solid #fff;
+      }
+      p.content {
+        text-align: justify;
       }
     }
 
   }
 
+  #istituzionale {
+    text-align: center;
+    margin-top: 100px;
+    p {
+      font-size: 16px;
+      margin-bottom: 34px;
+      color: @gray-light;
+    }
+    .logo-istituzionale {
+      & > img { max-height: 180px; }
+    }
+  }
+
+  #partners {
+    text-align: center;
+    h4 {
+      color: @gray-light;
+      margin-bottom: 24px;
+    }
+    .logo-partner {
+      img { max-height: 140px; }
+    }
+  }
+
+  footer {
+    background-color: #333333;
+    color: #999999;
+    font-weight: 300;
+    padding: 30px 100px;
+    a {
+      color: #666666;
+      font-size: 12px;
+    }
+    .footer-col {
+      min-width: 85px;
+      float: left;
+      margin-right: 54px;
+      &.pull-right { margin-right: 0px; }
+    }
+  }
+
 }
 
+a#coo2plan-big-link {
+  font-size: 24px;
+  color: #FF8800;
+  letter-spacing: 1px;
+}
+
+//  MEDIA QUERIES
+@media (max-width: @screen-xs-max) {
+  body {
+    footer {
+      padding: 30px 10px;
+      .footer-col {
+        margin-right: 4px;
+      }
+    }
+  }
+}
+@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+  body {
+    footer {
+      padding: 30px 40px;
+      .footer-col {
+        margin-right: 25px;
+      }
+    }
+  }
+}
+@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
+  body {
+    footer {
+      padding: 30px 60px;
+      .footer-col {
+        margin-right: 25px;
+      }
+    }
+  }
+}
+@media (min-width: @screen-lg-min) {  }
 
 //  HELPERS
 img {
   max-width: 100%;
+}
+
+hr {
+  border-top-color: #fff;
+  border-top-width: 1px;
+  box-shadow: 0px 0px 2px #ccc;
+  margin-top: 30px;
+  margin-bottom: 40px;
 }
 
 section.row {

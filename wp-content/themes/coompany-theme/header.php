@@ -21,7 +21,7 @@
 		<meta charset="<?php bloginfo('charset'); ?>">
 		<title><?php wp_title('|', true, 'right'); ?> <?php bloginfo('name'); ?></title>
 		<meta name="viewport" content="width=device-width">
-		<meta name="description" content="">
+		<meta name="description" content="Coompany è una società di persone accomunate dalla volontà di cambiare lo stato di cose, utilizzando quella che crediamo essere la più importante conquista dell’uomo: la collaborazione.">
 		<meta name="author" content="">
 
 		<link href="<?php echo get_template_directory_uri(); ?>/css/style.css" rel="stylesheet">

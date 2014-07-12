@@ -18,7 +18,7 @@ function exclude_pages_from_admin($query) {
 	global $pagenow,$post_type;
 	if (is_admin() && $pagenow=='edit.php' && $post_type =='page') {
 		// 122 is page Team
-		$query->query_vars['post__not_in'] = array('122');
+		//$query->query_vars['post__not_in'] = array('122');
 	}
 }
 
@@ -452,3 +452,18 @@ if ( ! function_exists( 'bootstrap_setup' ) ):
 	}
 
 endif;
+
+// LOGIN
+function custom_login() {
+    echo '<link rel="stylesheet" type="text/css" href="'.get_bloginfo('template_directory').'/inc/login.css" />';
+}
+add_action('login_head', 'custom_login');
+
+function LOGIN_the_url( $url ) {
+    return get_bloginfo( 'url' );
+}
+function LOGIN_the_title( $url ) {
+    return get_bloginfo( 'name' );
+}
+add_filter( 'login_headerurl', 'LOGIN_the_url' );
+add_filter( 'login_headertitle', 'LOGIN_the_title' );
