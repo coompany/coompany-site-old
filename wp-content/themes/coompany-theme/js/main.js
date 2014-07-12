@@ -5,6 +5,8 @@
 
 jQuery(document).ready(function($) {
 
+    $('html').niceScroll();
+
     if($('.feature').length > 0) {
 
         var setParallaxOverflowContainer = function() {

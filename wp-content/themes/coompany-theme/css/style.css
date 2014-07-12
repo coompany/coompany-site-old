@@ -1,3 +1,4 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,400italic);
 /**
 *     Author: Andrea Jemmett - Coompany .srls
 **/
@@ -5960,25 +5961,38 @@ td.visible-print {
 }
 body {
   padding-top: 135px;
-  background-color: #e9e9e9;
+  font-family: 'Source Sans Pro', sans-serif;
+  background-image: url('./../images/bg.png');
+}
+body h1,
+body h2,
+body h3,
+body h4,
+body h5,
+body h6 {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 600;
 }
 body #home-navbar {
   background-color: transparent;
   margin-top: 80px;
 }
+body #menu-shadow {
+  -webkit-box-shadow: 0px 2px 6px #808080;
+  box-shadow: 0px 2px 6px #808080;
+  width: 960px;
+  height: 1px;
+  background-color: transparent;
+  margin-top: 14px;
+  margin-left: auto;
+  margin-right: auto;
+}
 body .navbar {
-  background-color: #e9e9e9;
-  padding-bottom: 14px;
+  background-image: url('./../images/bg.png');
+  padding-bottom: 0px;
 }
 body .navbar .row:first-child {
   position: relative;
-}
-body .navbar #menu-shadow {
-  -webkit-box-shadow: 0px 0px 12px #555555;
-  box-shadow: 0px 0px 12px #555555;
-  width: 70%;
-  height: 1px;
-  background-color: transparent;
 }
 body .navbar .navbar-header .navbar-brand img {
   width: 100px;
@@ -5994,28 +6008,69 @@ body > .jumbotron {
   margin: 30px auto;
   max-width: 800px;
 }
+body #section-products {
+  background-image: url('./../images/bg.png');
+}
 body #section-products .feature {
   margin-bottom: 75px;
 }
+body #section-products .feature.text-center h3 {
+  font-size: 68px;
+  font-weight: 600;
+  margin-bottom: 50px;
+}
+body #section-products .feature.text-center .content {
+  margin-bottom: 50px;
+}
+body #section-products .feature.text-center .content p {
+  margin-bottom: 20px;
+  font-size: 16px;
+  font-weight: 200;
+  line-height: 1.4;
+  font-size: 22px;
+}
+@media (min-width: 768px) {
+  body #section-products .feature.text-center .content p {
+    font-size: 21px;
+  }
+}
+body #section-products .feature h3 {
+  font-weight: 400;
+  font-size: 34px;
+}
 body #section-products .feature .feature-bg {
   background: transparent 50% 50% no-repeat fixed;
+  background-size: 100%;
   margin-bottom: 25px;
 }
 body #section-products .feature .content p {
   line-height: 24px;
+  font-size: 18px;
 }
 body #section-products .feature .content a.btn {
   margin-top: 50px;
   margin-bottom: 10px;
   padding: 5px 22px;
 }
+body #section-products .feature div.text-right {
+  padding-right: 26px;
+}
+body #section-products .feature div.text-left {
+  padding-left: 26px;
+}
 body #section-products .feature .media-content {
   text-align: center;
 }
 body #section-products .feature .media-content img,
 body #section-products .feature .media-content iframe {
-  max-width: 90%;
-  max-height: 50%;
+  max-width: 100%;
+}
+body #section-products hr {
+  border-bottom: 2px solid white;
+  border-top-color: #d5d5d5;
+  border-top-width: 1px;
+  margin-top: 30px;
+  margin-bottom: 40px;
 }
 body #section-news {
   margin-top: 60px;
@@ -6033,15 +6088,15 @@ body #section-news .news-image {
   margin-bottom: 20px;
 }
 body #section-news .news-time {
-  color: #999999;
-  font-weight: 300;
+  color: #ff9d00;
+  font-weight: normal;
   font-size: 20px;
   text-transform: capitalize;
 }
 body #section-news hr {
-  border-top-color: #fff;
-  border-top-width: 3px;
-  box-shadow: 0px 0px 3px #ccc;
+  border-bottom: 2px solid white;
+  border-top-color: #d5d5d5;
+  border-top-width: 1px;
   margin-top: 30px;
   margin-bottom: 40px;
 }
@@ -6086,6 +6141,7 @@ body #partners .logo-partner img {
   max-height: 140px;
 }
 body footer {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color: #333333;
   color: #999999;
   font-weight: 300;
@@ -6108,7 +6164,17 @@ a#coo2plan-big-link {
   color: #FF8800;
   letter-spacing: 1px;
 }
+.text-orange {
+  color: #ff9d00 !important;
+}
+a.text-orange {
+  font-size: 18px;
+  font-weight: normal;
+}
 @media (max-width: 767px) {
+  body #menu-shadow {
+    width: 100%;
+  }
   body footer {
     padding: 30px 10px;
   }
@@ -6117,6 +6183,9 @@ a#coo2plan-big-link {
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
+  body #menu-shadow {
+    width: 100%;
+  }
   body footer {
     padding: 30px 40px;
   }
@@ -6125,6 +6194,9 @@ a#coo2plan-big-link {
   }
 }
 @media (min-width: 992px) and (max-width: 1199px) {
+  body #menu-shadow {
+    width: 80%;
+  }
   body footer {
     padding: 30px 60px;
   }

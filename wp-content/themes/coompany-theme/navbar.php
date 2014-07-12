@@ -44,4 +44,5 @@
 		echo '</div>';
 		?>
 	</div>
+    <div id="menu-shadow"></div>
 </nav>

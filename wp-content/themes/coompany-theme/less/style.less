@@ -7,31 +7,46 @@
 @icon-font-path: './../fonts/';
 
 @bg-color: #e9e9e9;
+@bg-img: url('./../images/bg.png');
+@orange: #FF9D00;
+
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,400italic);
+//  font-family: 'Source Sans Pro', sans-serif;
 
 body {
 
   padding-top: 135px;
+  font-family: 'Source Sans Pro', sans-serif;
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
+  }
 
-  background-color: @bg-color;
+  //background-color: @bg-color;
+  background-image: @bg-img;
 
   #home-navbar {
     background-color: transparent;
     margin-top: 80px;
   }
 
+  #menu-shadow {
+    .box-shadow(0px 2px 6px gray);
+    width: @container-desktop - 10%;
+    height: 1px;
+    background-color: transparent;
+    margin-top: 14px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .navbar {
-    background-color: @bg-color;
-    padding-bottom: 14px;
+    //background-color: @bg-color;
+    background-image: @bg-img;
+    padding-bottom: 0px;
 
     .row:first-child {
       position: relative;
-    }
-
-    #menu-shadow {
-      .box-shadow(0px 0px 12px @gray);
-      width: 70%;
-      height: 1px;
-      background-color: transparent;
     }
 
     .navbar-header {
@@ -64,17 +79,41 @@ body {
 
   #section-products {
 
+    background-image: @bg-img;
+
     .feature {
       margin-bottom: 75px;
 
+      &.text-center {
+        h3 {
+          font-size: 68px;
+          font-weight: 600;
+          margin-bottom: 50px;
+        }
+        .content  {
+          margin-bottom: 50px;
+          p {
+            .lead;
+            font-size: 22px;
+          }
+        }
+      }
+
+      h3 {
+        font-weight: 400;
+        font-size: 34px;
+      }
+
       .feature-bg {
         background: transparent 50% 50% no-repeat fixed;
+        background-size: 100%;
         margin-bottom: 25px;
       }
 
       .content {
         p {
           line-height: 24px;
+          font-size: 18px;
         }
         a.btn {
           margin-top: 50px;
@@ -83,14 +122,24 @@ body {
         }
       }
 
+      div.text-right {
+        padding-right: 26px;
+      }
+      div.text-left {
+        padding-left: 26px;
+      }
+
       .media-content {
         text-align: center;
         img, iframe {
-          max-width: 90%;
-          max-height: 50%;
+          max-width: 100%;
         }
       }
 
+    }
+
+    hr {
+      .white-gray;
     }
 
   }
@@ -113,18 +162,14 @@ body {
     }
 
     .news-time {
-      color: @gray-light;
-      font-weight: 300;
+      color: @orange;
+      font-weight: normal;
       font-size: 20px;
       text-transform: capitalize;
     }
 
     hr {
-      border-top-color: #fff;
-      border-top-width: 3px;
-      box-shadow: 0px 0px 3px #ccc;
-      margin-top: 30px;
-      margin-bottom: 40px;
+      .white-gray;
     }
 
   }
@@ -176,6 +221,7 @@ body {
   }
 
   footer {
+    font-family: @font-family-base;
     background-color: #333333;
     color: #999999;
     font-weight: 300;
@@ -200,9 +246,28 @@ a#coo2plan-big-link {
   letter-spacing: 1px;
 }
 
+.white-gray() {
+  border-bottom: 2px solid white;
+  border-top-color: darken(@gray-lighter, 10%);
+  border-top-width: 1px;
+  margin-top: 30px;
+  margin-bottom: 40px;
+}
+
+.text-orange {
+  color: @orange !important;
+}
+a.text-orange {
+  font-size: 18px;
+  font-weight: normal;
+}
+
 //  MEDIA QUERIES
 @media (max-width: @screen-xs-max) {
   body {
+    #menu-shadow {
+      width: 100%;
+    }
     footer {
       padding: 30px 10px;
       .footer-col {
@@ -213,6 +278,9 @@ a#coo2plan-big-link {
 }
 @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
   body {
+    #menu-shadow {
+      width: 100%;
+    }
     footer {
       padding: 30px 40px;
       .footer-col {
@@ -223,6 +291,9 @@ a#coo2plan-big-link {
 }
 @media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
   body {
+    #menu-shadow {
+      width: 80%;
+    }
     footer {
       padding: 30px 60px;
       .footer-col {

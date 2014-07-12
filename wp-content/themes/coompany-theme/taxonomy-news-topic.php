@@ -14,7 +14,7 @@ echo get_header();
 <?php
 if(have_posts()) :
 	?>
-				<div class="col-sm-9 col-sm-offset-3">
+				<div class="col-sm-7 col-sm-offset-5">
 	<?php
 	while(have_posts()) : the_post();
 		$datetime = new DateTime();
@@ -22,7 +22,7 @@ if(have_posts()) :
 		$date_exploded = explode(' ', get_the_date());
 		$str_time = $date_exploded[0].' '.$date_exploded[1];
 		$image_url = wp_get_attachment_url( get_post_thumbnail_id(get_the_ID()) );
-		$more_elm = '<p><a href="" class="btn btn-primary">More</a></p>';
+		$more_elm = '<p><a href="'.get_permalink().'" class="text-orange">More</a></p>';
 		?>
 					<article class="row">
 						<div class="col-xs-12">
