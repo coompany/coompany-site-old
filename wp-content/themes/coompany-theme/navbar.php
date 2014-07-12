@@ -44,5 +44,5 @@
 		echo '</div>';
 		?>
 	</div>
-    <div id="menu-shadow"></div>
+    <?php if(!is_home()) echo '<div id="menu-shadow"></div>'; ?>
 </nav>

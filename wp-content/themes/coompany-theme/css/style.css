@@ -5962,16 +5962,8 @@ td.visible-print {
 body {
   padding-top: 135px;
   font-family: 'Source Sans Pro', sans-serif;
+  background-color: #e9e9e9;
   background-image: url('./../images/bg.png');
-}
-body h1,
-body h2,
-body h3,
-body h4,
-body h5,
-body h6 {
-  font-family: 'Source Sans Pro', sans-serif;
-  font-weight: 600;
 }
 body #home-navbar {
   background-color: transparent;
@@ -5988,6 +5980,7 @@ body #menu-shadow {
   margin-right: auto;
 }
 body .navbar {
+  background-color: #e9e9e9;
   background-image: url('./../images/bg.png');
   padding-bottom: 0px;
 }
@@ -6219,7 +6212,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: 300;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 600;
 }
 h2 {
   font-size: 42px;
