@@ -6065,13 +6065,6 @@ body #section-products .feature .media-content img,
 body #section-products .feature .media-content iframe {
   max-width: 100%;
 }
-body #section-products hr {
-  border-bottom: 2px solid white;
-  border-top-color: #d5d5d5;
-  border-top-width: 1px;
-  margin-top: 30px;
-  margin-bottom: 40px;
-}
 body #section-news {
   margin-top: 60px;
 }
@@ -6093,15 +6086,8 @@ body #section-news .news-time {
   font-size: 20px;
   text-transform: capitalize;
 }
-body #section-news hr {
-  border-bottom: 2px solid white;
-  border-top-color: #d5d5d5;
-  border-top-width: 1px;
-  margin-top: 30px;
-  margin-bottom: 40px;
-}
 body #page-contatti {
-  text-align: right;
+  margin-top: 80px;
 }
 body #section-team-members {
   margin-top: 80px;
@@ -6121,11 +6107,14 @@ body #section-team-members .team-member p.content {
 body #istituzionale {
   text-align: center;
   margin-top: 100px;
+  margin-bottom: 0px;
+  background-color: white;
+  padding: 60px 0px 120px 0px;
 }
 body #istituzionale p {
   font-size: 16px;
   margin-bottom: 34px;
-  color: #999999;
+  color: #555555;
 }
 body #istituzionale .logo-istituzionale > img {
   max-height: 180px;
@@ -6158,18 +6147,6 @@ body footer .footer-col {
 }
 body footer .footer-col.pull-right {
   margin-right: 0px;
-}
-a#coo2plan-big-link {
-  font-size: 24px;
-  color: #FF8800;
-  letter-spacing: 1px;
-}
-.text-orange {
-  color: #ff9d00 !important;
-}
-a.text-orange {
-  font-size: 18px;
-  font-weight: normal;
 }
 @media (max-width: 767px) {
   body #menu-shadow {
@@ -6207,18 +6184,30 @@ a.text-orange {
 @media (min-width: 1200px) {
   
 }
+a#coo2plan-big-link {
+  font-size: 24px;
+  color: #FF8800;
+  letter-spacing: 1px;
+}
+.text-orange {
+  color: #ff9d00 !important;
+}
+a.text-orange {
+  font-size: 18px;
+  font-weight: normal;
+}
 img {
   max-width: 100%;
 }
 hr {
-  border-top-color: #fff;
+  border-bottom: 2px solid white;
+  border-top-color: #d5d5d5;
   border-top-width: 1px;
-  box-shadow: 0px 0px 2px #ccc;
   margin-top: 30px;
   margin-bottom: 40px;
 }
 section.row {
-  margin-bottom: 40px;
+  margin-bottom: 80px;
 }
 .content {
   font-weight: 300;
