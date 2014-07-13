@@ -44,7 +44,7 @@
 		<?php wp_head(); ?>
 	</head>
 
-	<body>
+	<body class="<?php if(is_home()) echo 'is-home'; ?>">
 
 		<div class="container">
             <?php

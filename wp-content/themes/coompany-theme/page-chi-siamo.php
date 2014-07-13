@@ -52,8 +52,6 @@ echo get_header();
                 </div>
             </section>
 
-            <hr />
-
             <section class="row" id="istituzionale">
                 <div class="col-xs-12">
                     <div class="row">

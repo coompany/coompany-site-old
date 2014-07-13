@@ -15,10 +15,10 @@ echo get_header();
 			<section class="row">
 				<div class="col-xs-12" id="page-contatti">
 					<?php $page_contatti = get_post(148);		// page 148 is Contatti ?>
-					<h3>
-                        <img src="<?php echo get_template_directory_uri(); ?>/images/icon_91.png" width="20" style="padding-bottom: 3px">
+					<h2>
                         <?php echo $page_contatti->post_title; ?>
-                    </h3>
+                        <img src="<?php echo get_template_directory_uri(); ?>/images/icon_91.png" width="30" style="padding-bottom: 3px; margin-left: 5px;">
+                    </h2>
 					<div class="content">
 						<?php echo apply_filters('the_content', $page_contatti->post_content); ?>
 					</div>

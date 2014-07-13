@@ -47,7 +47,7 @@ query_posts( $query_string . '&orderby=menu_order&order=ASC' );
                             </div>
                         </article>
                     </div>
-                    <?php else : ?>
+                    <?php elseif($index!=count($posts)-1) : ?>
 					<div class="row">
 						<article class="col-xs-12">
                             <div class="feature">
@@ -55,7 +55,7 @@ query_posts( $query_string . '&orderby=menu_order&order=ASC' );
                                     <div class="feature-bg" <?php echo $parallax_css; ?>></div>
                                 <?php } ?>
                                 <div class="row">
-                                    <div class="col-sm-6 text-right <?php echo(($index%2) ? ('') : ('media-content')); ?>">
+                                    <div class="col-sm-6 text-right <?php echo(($index%2) ? ('') : ('media-content')); ?> feature-<?php echo get_the_ID(); ?>">
                                         <?php if($index%2) : ?>
                                         <h3><?php the_title(); ?></h3>
                                         <h6><?php echo get_field('caption'); ?></h6>
@@ -75,7 +75,7 @@ query_posts( $query_string . '&orderby=menu_order&order=ASC' );
                                             <?php } ?>
                                         <?php endif; ?>
                                     </div>
-                                    <div class="col-sm-6 text-left <?php echo(($index%2) ? ('media-content') : ('')); ?>">
+                                    <div class="col-sm-6 text-left <?php echo(($index%2) ? ('media-content') : ('')); ?> feature-<?php echo get_the_ID(); ?>">
                                         <?php if($index%2) : ?>
                                             <?php if($video) {
                                                 echo $video_iframe;
@@ -99,9 +99,28 @@ query_posts( $query_string . '&orderby=menu_order&order=ASC' );
                             </div>
 						</article>
 					</div>
-						<?php
-
-                            endif;
+						<?php else: ?>
+                    <div class="row">
+                        <article class="col-xs-12">
+                            <div class="feature text-center">
+                                <?php if($parallax) { ?>
+                                    <div class="feature-bg" <?php echo $parallax_css; ?>></div>
+                                <?php } ?>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <img src="<?php echo wp_get_attachment_url( get_post_thumbnail_id(get_the_ID()) ); ?>" />
+                                        <h3><?php the_title(); ?></h3>
+                                        <h6><?php echo get_field('caption'); ?></h6>
+                                        <hr />
+                                        <div class="content">
+                                            <?php the_content(); ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                            <?php endif;
 							$index++;
 						endwhile;
 

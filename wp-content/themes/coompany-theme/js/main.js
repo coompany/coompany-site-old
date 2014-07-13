@@ -7,6 +7,8 @@ jQuery(document).ready(function($) {
 
     $('html').niceScroll();
 
+    $('#menu-shadow').width($('.quilia-container').width()-20);
+
     if($('.feature').length > 0) {
 
         var setParallaxOverflowContainer = function() {
@@ -17,14 +19,21 @@ jQuery(document).ready(function($) {
             var innerHeight = window.innerHeight;
             var navbarHeight = parseInt($('body > .container .navbar').css('height'));
 
+            var i = 0;
             $('.feature .feature-bg').each(function() {
                 var $this = $(this);
                 $this.css('width', innerWidth+'px');
                 var marginLeft = -.5*(innerWidth-containerWidth);
                 $this.css('margin-left', marginLeft+'px');
+                //$this.css('margin-top', (i*100)+'px');
 
                 //$this.css('height', (innerHeight-navbarHeight)+'px');
                 $this.css('height', (innerHeight)+'px');
+                //$this.css('height', )
+                if(innerHeight > innerWidth) {
+                    $this.css('height', innerWidth/1.8);
+                }
+                i++;
             });
 
         };
@@ -32,10 +41,10 @@ jQuery(document).ready(function($) {
         $(window).load(setParallaxOverflowContainer);
         $(window).resize(setParallaxOverflowContainer);
 
-        var parallaxSpeed = 0.2;
+        var parallaxSpeed = 0.1;
         $('.feature .feature-bg').each(function() {
             var $this = $(this);
-            $this.parallax('50%', parallaxSpeed);
+            $this.parallax('100%', parallaxSpeed, true);
         });
 
     }

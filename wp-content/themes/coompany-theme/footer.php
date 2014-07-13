@@ -43,7 +43,7 @@
 					</ul>
 				</div>
 
-                <div class="footer-col pull-right">
+                <div class="footer-col pull-right hidden-xs">
                     <h6>Coompany S.r.l.s</h6>
                     <p>
                         <a target="_blank" href="http://maps.google.com/?q=Via%20Abate%20Gimma%20248%2070122%20Bari">
