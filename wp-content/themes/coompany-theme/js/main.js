@@ -5,7 +5,11 @@
 
 jQuery(document).ready(function($) {
 
-    $('html').niceScroll();
+    $('body').niceScroll();
+
+    new WOW().init({
+        live: false
+    });
 
     $('#menu-shadow').width($('.quilia-container').width()-20);
 
