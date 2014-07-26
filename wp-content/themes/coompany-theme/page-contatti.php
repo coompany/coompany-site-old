@@ -33,7 +33,9 @@ echo get_header();
                     <section class="row">
                         <div class="col-xs-4">
                             <div class="logo-partner">
-                                <img src="<?php echo get_template_directory_uri(); ?>/images/pop_hub.jpg" />
+                                <a href="http://www.pophub.it/" target="_blank">
+                                    <img src="<?php echo get_template_directory_uri(); ?>/images/pop_hub.jpg" />
+                                </a>
                             </div>
                         </div>
                         <div class="col-xs-4">
@@ -43,7 +45,9 @@ echo get_header();
                         </div>
                         <div class="col-xs-4">
                             <div class="logo-partner">
-                                <img src="<?php echo get_template_directory_uri(); ?>/images/vuotiarendere.png" />
+                                <a href="http://www.vuotiarendere.com/" target="_blank">
+                                    <img src="<?php echo get_template_directory_uri(); ?>/images/vuotiarendere.png" />
+                                </a>
                             </div>
                         </div>
                     </section>

@@ -79,8 +79,8 @@ jQuery(document).ready(function($) {
                 var mFrameWidth = mobileVideo.parent('.media-content').width();
                 if( width >= 480 && width <= 767 ) {
                     deskVideo.css('width', (dFrameWidth-44)+'px');
-                    deskVideo.css('left', (dFrameWidth/5)+'px');
-                    deskVideo.css('top', (dFrameWidth/22)+'px');
+                    deskVideo.css('left', (dFrameWidth/5.3)+'px');
+                    deskVideo.css('top', (dFrameWidth/24)+'px');
 
                     mobileVideo.css('left', ((mFrameWidth/2)-16)+'px');
                 } else if( width <= 479 ) {
@@ -100,4 +100,13 @@ jQuery(document).ready(function($) {
 
         $(window).resize();
     });
+
+    //  Load videos
+    function loadVideo(tag) {
+        var video = $(tag).get(0);
+        var src = $(tag).children('source');video.load();
+        video.play();
+    }
+    loadVideo('#mobile-video');
+    loadVideo('#desktop-video');
 });

@@ -74,7 +74,7 @@ query_posts( $query_string . '&orderby=menu_order&order=ASC' );
                                                 echo $video_iframe;
                                             } else {
                                                 if(get_the_ID() == 114) {
-                                                    echo '<video autoplay loop muted><source src="'.get_bloginfo('home').'/wp-content/uploads/iphone.mp4" type="video/mp4" /></video>';
+                                                    echo '<video preload="none" loop muted id="mobile-video"><source src="'.get_bloginfo('home').'/wp-content/uploads/iphone.mp4" type="video/mp4" /></video>';
                                                 }
                                                 ?>
                                                 <img src="<?php echo wp_get_attachment_url( get_post_thumbnail_id($ID) ); ?>" />
@@ -87,7 +87,7 @@ query_posts( $query_string . '&orderby=menu_order&order=ASC' );
                                                 echo $video_iframe;
                                             } else {
                                                 if(get_the_ID() == 114) {
-                                                    echo '<video autoplay loop muted><source src="'.get_bloginfo('home').'/wp-content/uploads/iphone.mp4" type="video/mp4" /></video>';
+                                                    echo '<video preload="none" loop muted id="mobile-video"><source src="'.get_bloginfo('home').'/wp-content/uploads/iphone.mp4" type="video/mp4" /></video>';
                                                 }
                                                 ?>
                                                 <img src="<?php echo wp_get_attachment_url( get_post_thumbnail_id($ID) ); ?>" />
@@ -119,12 +119,12 @@ query_posts( $query_string . '&orderby=menu_order&order=ASC' );
                                 <div class="row">
                                     <div class="col-xs-12">
                                         <div class="animation-container">
-                                            <video autoplay loop muted id="desktop-video">
+                                            <video preload="none" loop muted id="desktop-video">
                                                 <source src="<?php bloginfo('home'); ?>/wp-content/uploads/desktop.mp4" type="video/mp4" />
                                             </video>
                                             <img src="<?php echo wp_get_attachment_url( get_post_thumbnail_id(get_the_ID()) ); ?>" />
                                         </div>
-                                        <h3><?php the_title(); ?></h3>
+                                        <h3><a href="http://signup.coompany.eu/" target="_blank"><?php the_title(); ?></a></h3>
                                         <h6><?php echo get_field('caption'); ?></h6>
                                         <hr />
                                         <div class="content">

@@ -56,7 +56,7 @@ echo get_header();
                 <div class="col-xs-12">
                     <div class="row">
                         <div class="col-xs-12">
-                            <p class="wow rollIn animated" data-wow-delay="0">Vincitore del concorso Principi Attivi 2012</p>
+                            <p>Vincitore del concorso Principi Attivi 2012</p>
                         </div>
                     </div>
                     <div class="row">

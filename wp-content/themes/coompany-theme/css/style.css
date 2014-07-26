@@ -6103,9 +6103,12 @@ body #section-products .feature .media-content video {
 body #section-products .feature.last video {
   position: absolute;
   max-width: 100%;
-  max-height: 410px;
-  top: 4%;
-  left: 19%;
+  max-height: 414px;
+  top: 32px;
+  left: 218px;
+}
+body #section-products .feature.last h3 a {
+  color: inherit;
 }
 body #section-news {
   margin-top: 60px;
@@ -6220,9 +6223,9 @@ body footer .footer-col.pull-right {
     width: 100%;
   }
   body #section-products .feature.last video {
-    max-height: 295px;
-    top: 26px;
-    left: 114px;
+    max-height: 297px;
+    top: 24px;
+    left: 111px;
   }
   body #section-products .feature .media-content.feature-114 video {
     left: 143px;
@@ -6239,9 +6242,9 @@ body footer .footer-col.pull-right {
     width: 80%;
   }
   body #section-products .feature.last video {
-    max-height: 384px;
-    top: 34px;
-    left: 144px;
+    max-height: 389px;
+    top: 31px;
+    left: 141px;
   }
   body #section-products .feature .media-content.feature-114 video {
     left: 198px;
