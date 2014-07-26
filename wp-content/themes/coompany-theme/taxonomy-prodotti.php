@@ -21,6 +21,8 @@ query_posts( $query_string . '&orderby=menu_order&order=ASC' );
 						$index = 0;
 						while(have_posts()) : the_post();
 
+                            $ID = get_the_ID();
+
 							$parallax = get_field('parallax_img');
 							$parallax_css = 'style="background-image: url('.$parallax.');"';
 
@@ -70,17 +72,25 @@ query_posts( $query_string . '&orderby=menu_order&order=ASC' );
                                         <?php else: ?>
                                             <?php if($video) {
                                                 echo $video_iframe;
-                                            } else { ?>
-                                                <img src="<?php echo wp_get_attachment_url( get_post_thumbnail_id(get_the_ID()) ); ?>" />
+                                            } else {
+                                                if(get_the_ID() == 114) {
+                                                    echo '<video autoplay loop muted><source src="'.get_bloginfo('home').'/wp-content/uploads/iphone.mp4" type="video/mp4" /></video>';
+                                                }
+                                                ?>
+                                                <img src="<?php echo wp_get_attachment_url( get_post_thumbnail_id($ID) ); ?>" />
                                             <?php } ?>
                                         <?php endif; ?>
                                     </div>
-                                    <div class="col-sm-6 text-left <?php echo(($index%2) ? ('media-content') : ('')); ?> feature-<?php echo get_the_ID(); ?>">
+                                    <div class="col-sm-6 text-left <?php echo(($index%2) ? ('media-content') : ('')); ?> feature-<?php the_ID(); ?>">
                                         <?php if($index%2) : ?>
                                             <?php if($video) {
                                                 echo $video_iframe;
-                                            } else { ?>
-                                                <img src="<?php echo wp_get_attachment_url( get_post_thumbnail_id(get_the_ID()) ); ?>" />
+                                            } else {
+                                                if(get_the_ID() == 114) {
+                                                    echo '<video autoplay loop muted><source src="'.get_bloginfo('home').'/wp-content/uploads/iphone.mp4" type="video/mp4" /></video>';
+                                                }
+                                                ?>
+                                                <img src="<?php echo wp_get_attachment_url( get_post_thumbnail_id($ID) ); ?>" />
                                             <?php } ?>
                                         <?php else: ?>
                                             <h3><?php the_title(); ?></h3>
@@ -102,13 +112,18 @@ query_posts( $query_string . '&orderby=menu_order&order=ASC' );
 						<?php else: ?>
                     <div class="row">
                         <article class="col-xs-12">
-                            <div class="feature text-center">
+                            <div class="feature text-center last">
                                 <?php if($parallax) { ?>
                                     <div class="feature-bg" <?php echo $parallax_css; ?>></div>
                                 <?php } ?>
                                 <div class="row">
                                     <div class="col-xs-12">
-                                        <img src="<?php echo wp_get_attachment_url( get_post_thumbnail_id(get_the_ID()) ); ?>" />
+                                        <div class="animation-container">
+                                            <video autoplay loop muted id="desktop-video">
+                                                <source src="<?php bloginfo('home'); ?>/wp-content/uploads/desktop.mp4" type="video/mp4" />
+                                            </video>
+                                            <img src="<?php echo wp_get_attachment_url( get_post_thumbnail_id(get_the_ID()) ); ?>" />
+                                        </div>
                                         <h3><?php the_title(); ?></h3>
                                         <h6><?php echo get_field('caption'); ?></h6>
                                         <hr />
