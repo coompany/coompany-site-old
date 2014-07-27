@@ -190,9 +190,9 @@ jQuery(document).ready(function($) {
         var video = $(tag).get(0);
         if(!video)
             return;
-        var src = $(tag).children('source');video.load();
+        video.load();
         video.play();
     }
-    loadVideo('#mobile-video');
-    loadVideo('#desktop-video');
+    //loadVideo('#mobile-video');
+    //loadVideo('#desktop-video');
 });

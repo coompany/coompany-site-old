@@ -74,7 +74,10 @@ query_posts( $query_string . '&orderby=menu_order&order=ASC' );
                                                 echo $video_iframe;
                                             } else {
                                                 if(get_the_ID() == 114) {
-                                                    echo '<video preload="none" loop muted id="mobile-video"><source src="'.get_bloginfo('home').'/wp-content/uploads/iphone.mp4" type="video/mp4" /></video>';
+                                                    echo '<video autoplay loop muted id="mobile-video">';
+                                                    echo '<source src="'.get_bloginfo('home').'/wp-content/uploads/iphone.mp4" type="video/mp4" />';
+                                                    echo '<source src="'.get_bloginfo('home').'/wp-content/uploads/iphone.ogv" type="video/ogg" />';
+                                                    echo '</video>';
                                                 }
                                                 ?>
                                                 <img src="<?php echo wp_get_attachment_url( get_post_thumbnail_id($ID) ); ?>" />
@@ -87,7 +90,10 @@ query_posts( $query_string . '&orderby=menu_order&order=ASC' );
                                                 echo $video_iframe;
                                             } else {
                                                 if(get_the_ID() == 114) {
-                                                    echo '<video preload="none" loop muted id="mobile-video"><source src="'.get_bloginfo('home').'/wp-content/uploads/iphone.mp4" type="video/mp4" /></video>';
+                                                    echo '<video autoplay loop muted id="mobile-video">';
+                                                    echo '<source src="'.get_bloginfo('home').'/wp-content/uploads/iphone.mp4" type="video/mp4" />';
+                                                    echo '<source src="'.get_bloginfo('home').'/wp-content/uploads/iphone.ogv" type="video/ogg" />';
+                                                    echo '</video>';
                                                 }
                                                 ?>
                                                 <img src="<?php echo wp_get_attachment_url( get_post_thumbnail_id($ID) ); ?>" />
@@ -119,8 +125,10 @@ query_posts( $query_string . '&orderby=menu_order&order=ASC' );
                                 <div class="row">
                                     <div class="col-xs-12">
                                         <div class="animation-container">
-                                            <video preload="none" loop muted id="desktop-video">
+                                            <video autoplay loop muted id="desktop-video">
                                                 <source src="<?php bloginfo('home'); ?>/wp-content/uploads/desktop.mp4" type="video/mp4" />
+                                                <source src="<?php bloginfo('home'); ?>/wp-content/uploads/desktop.ogv" type="video/ogg" />
+                                                Video not supported
                                             </video>
                                             <img src="<?php echo wp_get_attachment_url( get_post_thumbnail_id(get_the_ID()) ); ?>" />
                                         </div>
