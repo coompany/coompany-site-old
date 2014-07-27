@@ -27,9 +27,9 @@
 					<h6>About:</h6>
 					<ul class="list-unstyled">
 						<li><a href="<?php echo get_bloginfo('url'); ?>/chi-siamo">Chi siamo</a></li>
-						<li><a href="<?php echo get_bloginfo('url'); ?>/chi-siamo">Contatti</a></li>
+						<li><a href="<?php echo get_bloginfo('url'); ?>/contatti">Contatti</a></li>
 						<li><a href="<?php echo get_bloginfo('url'); ?>/chi-siamo">Team</a></li>
-                        <li><a href="<?php echo get_bloginfo('url'); ?>/chi-siamo">Partners</a></li>
+                        <li><a href="<?php echo get_bloginfo('url'); ?>/contatti">Partners</a></li>
 						<li><a href="http://jobs.coompany.eu">Work with us</a></li>
 					</ul>
 				</div>
