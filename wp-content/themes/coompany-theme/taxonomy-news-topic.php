@@ -26,13 +26,13 @@ if(have_posts()) :
 		?>
 					<article class="row">
 						<div class="col-xs-12">
-							<div class="news-image" style="background-image: url(<?php echo $image_url; ?>)">&nbsp;</div>
+							<div class="news-image" onclick="window.location='<?php the_permalink(); ?>'" style="background-image: url(<?php echo $image_url; ?>)">&nbsp;</div>
 							<div class="news-time">
 								<time datetime="<?php echo $datetime->format('Y-m-d H:m'); ?>">
 									<?php echo $str_time; ?> <small><?php echo $date_exploded[2]; ?></small>
 								</time>
 							</div>
-							<h3><?php the_title(); ?></h3>
+							<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
 							<div class="content"><?php the_content($more_elm); ?></div>
 						</div>
 					</article>

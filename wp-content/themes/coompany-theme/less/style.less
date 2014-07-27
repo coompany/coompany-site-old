@@ -194,11 +194,17 @@ body {
 
   }
 
-  #section-news {
+  #section-news, #single-news {
     margin-top: 60px;
 
     .content {
       margin-top: 22px;
+    }
+
+    h3 {
+      a {
+        color: inherit;
+      }
     }
 
     .news-image {
@@ -209,6 +215,7 @@ body {
       min-width: 100%;
       border: 4px solid #000;
       margin-bottom: 20px;
+      cursor: pointer;
     }
 
     .news-time {
@@ -218,6 +225,12 @@ body {
       text-transform: capitalize;
     }
 
+  }
+
+  #single-news {
+    .news-image {
+      cursor: auto;
+    }
   }
 
   #page-contatti {

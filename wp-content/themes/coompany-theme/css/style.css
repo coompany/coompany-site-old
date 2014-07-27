@@ -6110,13 +6110,20 @@ body #section-products .feature.last video {
 body #section-products .feature.last h3 a {
   color: inherit;
 }
-body #section-news {
+body #section-news,
+body #single-news {
   margin-top: 60px;
 }
-body #section-news .content {
+body #section-news .content,
+body #single-news .content {
   margin-top: 22px;
 }
-body #section-news .news-image {
+body #section-news h3 a,
+body #single-news h3 a {
+  color: inherit;
+}
+body #section-news .news-image,
+body #single-news .news-image {
   background-repeat: no-repeat;
   background-position: 50% 50%;
   background-size: 100%;
@@ -6124,12 +6131,17 @@ body #section-news .news-image {
   min-width: 100%;
   border: 4px solid #000;
   margin-bottom: 20px;
+  cursor: pointer;
 }
-body #section-news .news-time {
+body #section-news .news-time,
+body #single-news .news-time {
   color: #ff9d00;
   font-weight: normal;
   font-size: 20px;
   text-transform: capitalize;
+}
+body #single-news .news-image {
+  cursor: auto;
 }
 body #page-contatti {
   margin-top: 0px;
