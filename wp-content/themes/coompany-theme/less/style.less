@@ -387,6 +387,27 @@ body {
 
 //  HELPERS
 
+.hiddenop {
+  opacity: 0;
+}
+.visibleop {
+  opacity: 1;
+}
+
+.delay-animation(@secs: 1s) {
+  -webkit-animation-delay: @secs;
+  animation-delay: @secs;
+}
+.delay-animation-1s {
+  .delay-animation;
+}
+.delay-animation-05s {
+  .delay-animation(0.5s);
+}
+.delay-animation-15s {
+  .delay-animation(1.5s);
+}
+
 a#coo2plan-big-link {
   font-size: 24px;
   color: #FF8800;

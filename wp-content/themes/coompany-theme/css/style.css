@@ -6259,6 +6259,24 @@ body footer .footer-col.pull-right {
 @media (min-width: 1200px) {
   
 }
+.hiddenop {
+  opacity: 0;
+}
+.visibleop {
+  opacity: 1;
+}
+.delay-animation-1s {
+  -webkit-animation-delay: 1s;
+  animation-delay: 1s;
+}
+.delay-animation-05s {
+  -webkit-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+}
+.delay-animation-15s {
+  -webkit-animation-delay: 1.5s;
+  animation-delay: 1.5s;
+}
 a#coo2plan-big-link {
   font-size: 24px;
   color: #FF8800;

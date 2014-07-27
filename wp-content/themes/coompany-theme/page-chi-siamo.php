@@ -35,9 +35,11 @@ echo get_header();
                             $image_url = wp_get_attachment_url( get_post_thumbnail_id(get_the_ID()) );
                             ?>
                             <div class="col-md-3 team-member">
-                                <img class="img-circle wow bounceInUp animated" data-wow-delay="1s" src="<?php echo $image_url; ?>" />
-                                <h4 class="wow fadeIn animated" data-wow-delay="1s"><?php echo get_the_title(); ?><br /><small><?php echo get_field('role'); ?></small></h4>
-                                <p class="content wow fadeIn animated" data-wow-delay="0.5s" data-wow-duration="4s"><?php echo get_the_content(); ?></p>
+                                <div class="wow anim-bounceInUp delay-animation-1s">
+                                    <img class="img-circle" src="<?php echo $image_url; ?>" />
+                                </div>
+                                <h4 class="wow anim-fadeIn delay-animation-1s"><?php echo get_the_title(); ?><br /><small><?php echo get_field('role'); ?></small></h4>
+                                <p class="content wow anim-fadeIn delay-animation-05s"><?php echo get_the_content(); ?></p>
                             </div>
                             <?php
                             $i++;
@@ -63,17 +65,17 @@ echo get_header();
                         <div class="col-xs-12">
                             <section class="row">
                                 <div class="col-xs-4">
-                                    <div class="logo-istituzionale wow zoomInLeft animated" data-wow-delay="0.5s">
+                                    <div class="logo-istituzionale wow anim-zoomInLeft delay-animation-05s">
                                         <img src="<?php echo get_template_directory_uri(); ?>/images/ministero.jpg" />
                                     </div>
                                 </div>
                                 <div class="col-xs-4">
-                                    <div class="logo-istituzionale wow zoomInUp animated" data-wow-delay="1.5s">
+                                    <div class="logo-istituzionale wow anim-zoomInUp delay-animation-15s">
                                         <img src="<?php echo get_template_directory_uri(); ?>/images/vincitore_vert_1.jpg" />
                                     </div>
                                 </div>
                                 <div class="col-xs-4">
-                                    <div class="logo-istituzionale wow zoomInRight animated" data-wow-delay="1s">
+                                    <div class="logo-istituzionale wow anim-zoomInRight delay-animation-1s">
                                         <img src="<?php echo get_template_directory_uri(); ?>/images/regione.jpg" />
                                     </div>
                                 </div>
