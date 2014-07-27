@@ -13,7 +13,7 @@ echo get_header();
 ?>
 
 			<section class="row">
-				<div class="col-xs-12" id="page-contatti">
+				<div class="col-xs-12 wow anim-fadeIn" id="page-contatti">
 					<?php $page_contatti = get_post(148);		// page 148 is Contatti ?>
 					<h2>
                         <?php echo $page_contatti->post_title; ?>
@@ -32,19 +32,19 @@ echo get_header();
                 <div class="col-xs-12">
                     <section class="row">
                         <div class="col-xs-4">
-                            <div class="logo-partner">
+                            <div class="logo-partner wow anim-fadeIn delay-animation-05s">
                                 <a href="http://www.pophub.it/" target="_blank">
                                     <img src="<?php echo get_template_directory_uri(); ?>/images/pop_hub.jpg" />
                                 </a>
                             </div>
                         </div>
                         <div class="col-xs-4">
-                            <div class="logo-partner">
+                            <div class="logo-partner wow anim-fadeIn delay-animation-1s">
                                 <img src="<?php echo get_template_directory_uri(); ?>/images/logo-comune-02.png" />
                             </div>
                         </div>
                         <div class="col-xs-4">
-                            <div class="logo-partner">
+                            <div class="logo-partner wow anim-fadeIn delay-animation-15s">
                                 <a href="http://www.vuotiarendere.com/" target="_blank">
                                     <img src="<?php echo get_template_directory_uri(); ?>/images/vuotiarendere.png" />
                                 </a>
