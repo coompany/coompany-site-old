@@ -26,6 +26,9 @@ $str_time = $date_exploded[0].' '.$date_exploded[1];
                         </time>
                     </div>
                     <div class="content"><?php echo apply_filters('the_content', $post->post_content); ?></div>
+                    <section class="comments">
+                        <?php echo disqus_embed('coompany'); ?>
+                    </section>
                 </article>
             </section>
 

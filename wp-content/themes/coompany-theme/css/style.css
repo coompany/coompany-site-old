@@ -6143,6 +6143,9 @@ body #single-news .news-time {
 body #single-news .news-image {
   cursor: auto;
 }
+body #single-news .comments {
+  margin-top: 60px;
+}
 body #page-contatti {
   margin-top: 0px;
   font-size: 18px;
