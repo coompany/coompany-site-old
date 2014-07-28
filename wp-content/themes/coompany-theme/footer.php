@@ -58,6 +58,7 @@
 
 		</div><!-- /container -->
 
+    <?php echo get_template_part('analytics'); ?>
 		<?php wp_footer(); ?>
 
 	</body>
