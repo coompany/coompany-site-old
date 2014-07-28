@@ -46,6 +46,16 @@
 
 	<body class="<?php if(is_home()) echo 'is-home'; ?>">
 
+        <div id="mobile-overlay">
+            <div>
+                <div class="alert">
+                    <img src="<?php echo get_template_directory_uri(); ?>/images/coom-logo.png" />
+                    <p>Stiamo lavorando per garantire la migliore esperienza possibile da tutti i dispositivi. Nel frattempo venite a visitarci da un terminale desktop o registratevi alla nostra newsletter per conoscere tutte le iniziative di Coompany.</p>
+                    <a class="btn btn-block btn-warning" href="http://signup.coompany.eu">Iscriviti</a>
+                </div>
+            </div>
+        </div>
+
 		<div class="container">
             <?php
             if(!is_home()) {

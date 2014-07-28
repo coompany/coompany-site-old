@@ -93,6 +93,11 @@ jQuery(document).ready(function() {
 
 jQuery(document).ready(function($) {
 
+    // Detect device
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        $('#mobile-overlay').css('visibility', 'visible');
+    }
+
     $('body').niceScroll();
 
     $('#menu-shadow').width($('.quilia-container').width()-20);
