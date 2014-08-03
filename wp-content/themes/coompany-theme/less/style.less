@@ -213,7 +213,6 @@ body {
       background-size: 100%;
       min-height: 300px;
       min-width: 100%;
-      border: 4px solid #000;
       margin-bottom: 20px;
       cursor: pointer;
     }
@@ -244,7 +243,7 @@ body {
     }
   }
 
-  #section-team-members{
+  #team-members{
 
     margin-top: 80px;
     margin-bottom: 30px;
@@ -432,6 +431,13 @@ body {
 @media (min-width: @screen-lg-min) {  }
 
 //  HELPERS
+
+nav li.active {
+  a {
+    font-weight: bold;
+    color: @gray-darker;
+  }
+}
 
 .hiddenop {
   opacity: 0;

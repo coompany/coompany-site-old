@@ -6129,7 +6129,6 @@ body #single-news .news-image {
   background-size: 100%;
   min-height: 300px;
   min-width: 100%;
-  border: 4px solid #000;
   margin-bottom: 20px;
   cursor: pointer;
 }
@@ -6153,20 +6152,20 @@ body #page-contatti {
 body #page-contatti h2 {
   margin-bottom: 30px;
 }
-body #section-team-members {
+body #team-members {
   margin-top: 80px;
   margin-bottom: 30px;
 }
-body #section-team-members .team-member {
+body #team-members .team-member {
   text-align: center;
   margin-bottom: 80px;
 }
-body #section-team-members .team-member img.img-circle {
+body #team-members .team-member img.img-circle {
   max-width: 200px;
   margin: 0 auto;
   border: 8px solid #fff;
 }
-body #section-team-members .team-member p.content {
+body #team-members .team-member p.content {
   text-align: justify;
 }
 body #istituzionale {
@@ -6302,6 +6301,10 @@ body #mobile-overlay > * a.btn-block {
 }
 @media (min-width: 1200px) {
   
+}
+nav li.active a {
+  font-weight: bold;
+  color: #222222;
 }
 .hiddenop {
   opacity: 0;

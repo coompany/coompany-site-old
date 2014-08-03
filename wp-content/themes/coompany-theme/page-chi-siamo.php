@@ -24,7 +24,7 @@ echo get_header();
 
             <hr />
 
-            <section id="section-team-members" class="row">
+            <section id="team-members" class="row">
                 <div class="col-xs-12">
                     <?php
                     query_posts('post_type=team&posts_per_page=-1&order=asc');

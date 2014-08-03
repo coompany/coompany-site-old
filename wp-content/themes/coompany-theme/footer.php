@@ -28,8 +28,8 @@
 					<ul class="list-unstyled">
 						<li><a href="<?php echo get_bloginfo('url'); ?>/chi-siamo">Chi siamo</a></li>
 						<li><a href="<?php echo get_bloginfo('url'); ?>/contatti">Contatti</a></li>
-						<li><a href="<?php echo get_bloginfo('url'); ?>/chi-siamo">Team</a></li>
-                        <li><a href="<?php echo get_bloginfo('url'); ?>/contatti">Partners</a></li>
+						<li><a href="<?php echo get_bloginfo('url'); ?>/chi-siamo#team-members">Team</a></li>
+                        <li><a href="<?php echo get_bloginfo('url'); ?>/contatti#partners">Partners</a></li>
 						<li><a href="http://jobs.coompany.eu">Work with us</a></li>
 					</ul>
 				</div>
