@@ -68,18 +68,6 @@ define('NONCE_SALT',       'put your unique phrase here');
 $table_prefix  = 'wp_';
 
 /**
- * Lingua di Localizzazione di WordPress, di base Inglese.
- *
- * Modificare questa voce per localizzare WordPress. Occorre che nella cartella
- * wp-content/languages sia installato un file MO corrispondente alla lingua
- * selezionata. Ad esempio, installare de_DE.mo in to wp-content/languages ed
- * impostare WPLANG a 'de_DE' per abilitare il supporto alla lingua tedesca.
- *
- * Tale valore è già impostato per la lingua italiana
- */
-define('WPLANG', 'it_IT');
-
-/**
  * Per gli sviluppatori: modalità di debug di WordPress.
  *
  * Modificare questa voce a TRUE per abilitare la visualizzazione degli avvisi
