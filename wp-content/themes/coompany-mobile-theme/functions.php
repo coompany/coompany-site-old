@@ -143,6 +143,17 @@ function wpclean_metabox_menu_posttype_archive() {
 
 
 
+//	# INCLUDE SCRIPTS
+function enqueue_conditional_scripts() {
+	if(is_admin())
+		return;
+
+	wp_enqueue_script('jquery-parallax', get_template_directory_uri().'/library/js/libs/jquery.parallax-1.1.3.js', array('jquery'), null, true);
+	wp_enqueue_script('main-js', get_template_directory_uri().'/library/js/scripts.js', array('jquery-parallax'), null, true);
+}
+
+add_action('wp_enqueue_scripts', 'enqueue_conditional_scripts');
+
 // Pretty debug
 function delog($what) {
     echo '<pre>';

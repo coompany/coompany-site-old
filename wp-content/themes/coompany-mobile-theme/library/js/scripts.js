@@ -67,12 +67,40 @@ jQuery(document).ready(function($) {
     
 	
 	// add all your scripts here
-    var setShadowHeight = function() {
-        $('#shadow').height($(document).innerHeight());
+    var setParallaxOverflowContainer = function() {
+
+        var containerWidth = parseInt($('body > .container .feature').css('width'));
+        var innerWidth = window.innerWidth;
+
+        var innerHeight = window.innerHeight;
+
+        var i = 0;
+        $('.feature .feature-bg').each(function() {
+            var $this = $(this);
+            $this.css('width', innerWidth+'px');
+            var marginLeft = -.5*(innerWidth-containerWidth);
+            $this.css('margin-left', marginLeft+'px');
+            $this.css('margin-top', (i*50)+'px');
+            if (responsive_viewport >= 768) {
+                $this.css('height', (innerHeight)+'px');
+            } else if (responsive_viewport > 481) {
+                $this.css('height', (innerHeight)+'px');
+            } else {
+                $this.css('height', (innerHeight/2)+'px');
+            }
+            i++;
+        });
+
     };
-    setTimeout(setShadowHeight, 1000);
-    setTimeout(setShadowHeight, 3000);
-    setTimeout(setShadowHeight, 6000);
+
+    $(window).load(setParallaxOverflowContainer);
+    $(window).resize(setParallaxOverflowContainer);
+
+    var parallaxSpeed = .1;
+    $('.feature .feature-bg').each(function(index) {
+        var $this = $(this);
+        $this.parallax('50%', parallaxSpeed, true, index);
+    });
 	
  
 }); /* end of as page load scripts */

@@ -28,7 +28,7 @@ query_posts( 'post_type=features&prodotti=coo2plan&orderby=menu_order&order=ASC'
                             $video = get_field('video');
                             $video_iframe = '<iframe type="text/html" width="640" height="360" src="'.$video.'" frameborder="0"></iframe>';
                             ?>
-                            <?php if($index==0) : ?>
+                            <?php if($index==0) : // this is the first feature ?>
                                 <div class="row">
                                     <article class="col-xs-12">
                                         <div class="feature text-center">
@@ -48,7 +48,7 @@ query_posts( 'post_type=features&prodotti=coo2plan&orderby=menu_order&order=ASC'
                                         </div>
                                     </article>
                                 </div>
-                            <?php elseif($index!=count($posts)-1) : ?>
+                            <?php elseif($index!=count($posts)-1) : // those are the middle features ?>
                                 <div class="row">
                                     <article class="col-xs-12">
                                         <div class="feature">
@@ -56,65 +56,37 @@ query_posts( 'post_type=features&prodotti=coo2plan&orderby=menu_order&order=ASC'
                                                 <div class="feature-bg" <?php echo $parallax_css; ?>></div>
                                             <?php } ?>
                                             <div class="row">
-                                                <div class="col-sm-6 text-right <?php echo(($index%2) ? ('') : ('media-content')); ?> feature-<?php echo get_the_ID(); ?>">
-                                                    <?php if($index%2) : ?>
-                                                        <h3><?php the_title(); ?></h3>
-                                                        <h6><?php echo get_field('caption'); ?></h6>
-                                                        <div class="content">
-                                                            <?php if(get_field('link_more')) { ?>
-                                                                <?php the_excerpt(); ?>
-                                                                <a href="<?php echo get_permalink(); ?>" class="btn btn-primary">More</a>
-                                                            <?php } else {
-                                                                the_content();
-                                                            } ?>
-                                                        </div>
-                                                    <?php else: ?>
-                                                        <?php if($video) {
-                                                            echo $video_iframe;
-                                                        } else {
-                                                            if(get_the_ID() == 114) {
-                                                                echo '<video autoplay loop muted id="mobile-video">';
-                                                                echo '<source src="'.get_bloginfo('home').'/wp-content/uploads/iphone.mp4" type="video/mp4" />';
-                                                                echo '<source src="'.get_bloginfo('home').'/wp-content/uploads/iphone.ogv" type="video/ogg" />';
-                                                                echo '</video>';
-                                                            }
-                                                            ?>
-                                                            <img src="<?php echo wp_get_attachment_url( get_post_thumbnail_id($ID) ); ?>" />
-                                                        <?php } ?>
-                                                    <?php endif; ?>
+                                                <div class="col-xs-12 text-left feature-<?php echo get_the_ID(); ?>">
+													<h3><?php the_title(); ?></h3>
+													<h6><?php echo get_field('caption'); ?></h6>
+													<div class="content">
+														<?php if(get_field('link_more')) { ?>
+															<?php the_excerpt(); ?>
+															<a href="<?php echo get_permalink(); ?>" class="btn btn-primary">More</a>
+														<?php } else {
+															the_content();
+														} ?>
+													</div>
                                                 </div>
-                                                <div class="col-sm-6 text-left <?php echo(($index%2) ? ('media-content') : ('')); ?> feature-<?php the_ID(); ?>">
-                                                    <?php if($index%2) : ?>
-                                                        <?php if($video) {
-                                                            echo $video_iframe;
-                                                        } else {
-                                                            if(get_the_ID() == 114) {
-                                                                echo '<video autoplay loop muted id="mobile-video">';
-                                                                echo '<source src="'.get_bloginfo('home').'/wp-content/uploads/iphone.mp4" type="video/mp4" />';
-                                                                echo '<source src="'.get_bloginfo('home').'/wp-content/uploads/iphone.ogv" type="video/ogg" />';
-                                                                echo '</video>';
-                                                            }
-                                                            ?>
-                                                            <img src="<?php echo wp_get_attachment_url( get_post_thumbnail_id($ID) ); ?>" />
-                                                        <?php } ?>
-                                                    <?php else: ?>
-                                                        <h3><?php the_title(); ?></h3>
-                                                        <h6><?php echo get_field('caption'); ?></h6>
-                                                        <div class="content">
-                                                            <?php if(get_field('link_more')) { ?>
-                                                                <?php the_excerpt(); ?>
-                                                                <a href="<?php echo get_permalink(); ?>" class="btn btn-primary">More</a>
-                                                            <?php } else {
-                                                                the_content();
-                                                            } ?>
-                                                        </div>
-                                                    <?php endif; ?>
+                                                <div class="col-xs-12 text-center media-content feature-<?php the_ID(); ?>">
+													<?php if($video) {
+														echo $video_iframe;
+													} else {
+														if(get_the_ID() == 114) {
+															echo '<video autoplay loop muted id="mobile-video">';
+															echo '<source src="'.get_bloginfo('home').'/wp-content/uploads/iphone.mp4" type="video/mp4" />';
+															echo '<source src="'.get_bloginfo('home').'/wp-content/uploads/iphone.ogv" type="video/ogg" />';
+															echo '</video>';
+														}
+														?>
+														<img src="<?php echo wp_get_attachment_url( get_post_thumbnail_id($ID) ); ?>" />
+													<?php } ?>
                                                 </div>
                                             </div>
                                         </div>
                                     </article>
                                 </div>
-                            <?php else: ?>
+                            <?php else: // this is the last feature ?>
                                 <div class="row">
                                     <article class="col-xs-12">
                                         <div class="feature text-center last">
