@@ -8242,7 +8242,7 @@ body #section-products .feature {
   margin-bottom: 75px;
 }
 body #section-products .feature.text-center h3 {
-  font-size: 68px;
+  font-size: 62px;
   font-weight: 600;
   margin-bottom: 50px;
 }
@@ -8254,7 +8254,7 @@ body #section-products .feature.text-center .content p {
   font-size: 16px;
   font-weight: 200;
   line-height: 1.4;
-  font-size: 22px;
+  font-size: 20px;
 }
 @media (min-width: 768px) {
   body #section-products .feature.text-center .content p {
@@ -8282,37 +8282,21 @@ body #section-products .feature .content a.btn {
   margin-bottom: 10px;
   padding: 5px 22px;
 }
-body #section-products .feature div.text-right {
-  padding-right: 40px;
-}
-body #section-products .feature div.text-right .content {
-  padding-left: 50px;
-}
-body #section-products .feature div.text-left {
-  padding-left: 40px;
-}
-body #section-products .feature div.text-left .content {
-  padding-right: 50px;
-}
 body #section-products .feature .media-content {
   text-align: center;
-}
-body #section-products .feature .media-content.feature-114 {
-  margin-top: -30px;
-}
-body #section-products .feature .media-content.feature-114 video {
-  max-height: 298px;
-  top: 62px;
-  left: 42.5%;
+  margin-top: 60px;
 }
 body #section-products .feature .media-content img,
 body #section-products .feature .media-content iframe {
   max-width: 100%;
-  max-height: 420px;
 }
 body #section-products .feature .media-content video {
   position: absolute;
   max-width: 100%;
+}
+body #section-products .feature.last {
+  text-align: center;
+  font-size: 22px;
 }
 body #section-products .feature.last video {
   position: absolute;
@@ -8323,6 +8307,14 @@ body #section-products .feature.last video {
 }
 body #section-products .feature.last h3 a {
   color: inherit;
+  font-size: 56px;
+}
+body footer {
+  background-color: #333333;
+  color: #eeeeee;
+}
+body footer a {
+  color: #6f6f6f;
 }
 @media (max-width: 767px) {
   

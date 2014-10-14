@@ -18,7 +18,7 @@
                 </ul>
             </div>
 
-            <div class="col-xs-6">
+            <div class="col-xs-6 col-sm-4 col-sm-offset-2">
                 <h6>Coompany S.r.l.s</h6>
                 <p>
                     <a target="_blank" href="http://maps.google.com/?q=Via%20Abate%20Gimma%20248%2070122%20Bari">

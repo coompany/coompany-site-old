@@ -17,6 +17,7 @@ query_posts( 'post_type=features&prodotti=coo2plan&orderby=menu_order&order=ASC'
                 <section class="col-xs-12" id="section-products">
                     <?php if(have_posts()) :
 
+                        global $wp_query;
                         $index = 0;
                         while(have_posts()) : the_post();
 
@@ -48,7 +49,7 @@ query_posts( 'post_type=features&prodotti=coo2plan&orderby=menu_order&order=ASC'
                                         </div>
                                     </article>
                                 </div>
-                            <?php elseif($index!=count($posts)-1) : // those are the middle features ?>
+                            <?php elseif($index!=$wp_query->post_count-1) : // those are the middle features ?>
                                 <div class="row">
                                     <article class="col-xs-12">
                                         <div class="feature">
@@ -69,18 +70,10 @@ query_posts( 'post_type=features&prodotti=coo2plan&orderby=menu_order&order=ASC'
 													</div>
                                                 </div>
                                                 <div class="col-xs-12 text-center media-content feature-<?php the_ID(); ?>">
-													<?php if($video) {
-														echo $video_iframe;
-													} else {
-														if(get_the_ID() == 114) {
-															echo '<video autoplay loop muted id="mobile-video">';
-															echo '<source src="'.get_bloginfo('home').'/wp-content/uploads/iphone.mp4" type="video/mp4" />';
-															echo '<source src="'.get_bloginfo('home').'/wp-content/uploads/iphone.ogv" type="video/ogg" />';
-															echo '</video>';
-														}
-														?>
-														<img src="<?php echo wp_get_attachment_url( get_post_thumbnail_id($ID) ); ?>" />
-													<?php } ?>
+													<?php
+                                                    if($video) { echo $video_iframe; }
+                                                    else { ?> <img src="<?php echo wp_get_attachment_url( get_post_thumbnail_id(get_the_ID()) ); ?>" /> <?php }
+                                                    ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -89,18 +82,13 @@ query_posts( 'post_type=features&prodotti=coo2plan&orderby=menu_order&order=ASC'
                             <?php else: // this is the last feature ?>
                                 <div class="row">
                                     <article class="col-xs-12">
-                                        <div class="feature text-center last">
+                                        <div class="feature last">
                                             <?php if($parallax) { ?>
                                                 <div class="feature-bg" <?php echo $parallax_css; ?>></div>
                                             <?php } ?>
                                             <div class="row">
                                                 <div class="col-xs-12">
                                                     <div class="animation-container">
-                                                        <video autoplay loop muted id="desktop-video">
-                                                            <source src="<?php bloginfo('home'); ?>/wp-content/uploads/desktop.mp4" type="video/mp4" />
-                                                            <source src="<?php bloginfo('home'); ?>/wp-content/uploads/desktop.ogv" type="video/ogg" />
-                                                            Video not supported
-                                                        </video>
                                                         <img src="<?php echo wp_get_attachment_url( get_post_thumbnail_id(get_the_ID()) ); ?>" />
                                                     </div>
                                                     <h3><a href="http://signup.coompany.eu/" target="_blank"><?php the_title(); ?></a></h3>
