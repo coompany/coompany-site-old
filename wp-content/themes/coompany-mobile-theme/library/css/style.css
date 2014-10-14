@@ -8309,9 +8309,48 @@ body #section-products .feature.last h3 a {
   color: inherit;
   font-size: 56px;
 }
+body #mobile-about-section {
+  margin-top: 160px;
+}
+body #mobile-about-section #about-section {
+  margin-bottom: 60px;
+}
+body #mobile-about-section #team-members {
+  margin-top: 80px;
+  margin-bottom: 30px;
+}
+body #mobile-about-section #team-members .team-member {
+  text-align: center;
+  margin-bottom: 80px;
+}
+body #mobile-about-section #team-members .team-member img.img-circle {
+  max-width: 400px;
+  width: 70%;
+  margin: 0 auto;
+  border: 8px solid #fff;
+}
+body #mobile-about-section #team-members .team-member p.content {
+  text-align: justify;
+}
+body #mobile-about-section #istituzionale {
+  text-align: center;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  background-color: white;
+  padding: 60px 0px 80px 0px;
+}
+body #mobile-about-section #istituzionale p {
+  font-size: 16px;
+  margin-bottom: 34px;
+  color: #555555;
+}
+body #mobile-about-section #istituzionale .logo-istituzionale > img {
+  max-height: 180px;
+}
 body footer {
   background-color: #333333;
   color: #eeeeee;
+  padding-top: 24px;
 }
 body footer a {
   color: #6f6f6f;
