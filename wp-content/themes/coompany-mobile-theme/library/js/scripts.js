@@ -67,6 +67,8 @@ jQuery(document).ready(function($) {
     
 	
 	// add all your scripts here
+
+    /*
     var setParallaxOverflowContainer = function() {
 
         var containerWidth = parseInt($('body > .container .feature').css('width'));
@@ -101,6 +103,7 @@ jQuery(document).ready(function($) {
         var $this = $(this);
         $this.parallax('50%', parallaxSpeed, true, index);
     });
+    */
 	
  
 }); /* end of as page load scripts */

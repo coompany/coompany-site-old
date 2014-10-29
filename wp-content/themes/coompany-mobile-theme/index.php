@@ -34,7 +34,10 @@ query_posts( 'post_type=features&prodotti=coo2plan&orderby=menu_order&order=ASC'
                                     <article class="col-xs-12">
                                         <div class="feature text-center">
                                             <?php if($parallax) { ?>
-                                                <div class="feature-bg" <?php echo $parallax_css; ?>></div>
+                                                <!--<div class="feature-bg" <?php echo $parallax_css; ?>></div>-->
+                                                <div class="featured-big-img">
+                                                    <img src="<?php echo $parallax; ?>" />
+                                                </div>
                                             <?php } ?>
                                             <div class="row">
                                                 <div class="col-xs-12">
@@ -54,7 +57,10 @@ query_posts( 'post_type=features&prodotti=coo2plan&orderby=menu_order&order=ASC'
                                     <article class="col-xs-12">
                                         <div class="feature">
                                             <?php if($parallax) { ?>
-                                                <div class="feature-bg" <?php echo $parallax_css; ?>></div>
+                                                <!--<div class="feature-bg" <?php echo $parallax_css; ?>></div>-->
+                                                <div class="featured-big-img">
+                                                    <img src="<?php echo $parallax; ?>" />
+                                                </div>
                                             <?php } ?>
                                             <div class="row">
                                                 <div class="col-xs-12 text-left feature-<?php echo get_the_ID(); ?>">
@@ -71,8 +77,53 @@ query_posts( 'post_type=features&prodotti=coo2plan&orderby=menu_order&order=ASC'
                                                 </div>
                                                 <div class="col-xs-12 text-center media-content feature-<?php the_ID(); ?>">
 													<?php
-                                                    if($video) { echo $video_iframe; }
-                                                    else { ?> <img src="<?php echo wp_get_attachment_url( get_post_thumbnail_id(get_the_ID()) ); ?>" /> <?php }
+                                                    if(get_the_ID() == 114) {
+                                                        ?>
+                                                    <div class="slider-container">
+                                                        <img src="<?php echo get_template_directory_uri(); ?>/library/images/iphoneFISSO.png">
+                                                        <!--
+                                                        <div id="mobile-carousel" class="carousel slide" data-ride="carousel">
+                                                            <ol class="carousel-indicators">
+                                                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                                                                <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+                                                                <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+                                                            </ol>
+
+                                                            <div class="carousel-inner">
+                                                                <div class="item active">
+                                                                    <img src="<?php echo get_template_directory_uri(); ?>/library/images/slides/S1.png">
+                                                                </div>
+                                                                <div class="item">
+                                                                    <img src="<?php echo get_template_directory_uri(); ?>/library/images/slides/S2.png">
+                                                                </div>
+                                                                <div class="item">
+                                                                    <img src="<?php echo get_template_directory_uri(); ?>/library/images/slides/S3.png">
+                                                                </div>
+                                                                <div class="item">
+                                                                    <img src="<?php echo get_template_directory_uri(); ?>/library/images/slides/S4.png">
+                                                                </div>
+                                                                <div class="item">
+                                                                    <img src="<?php echo get_template_directory_uri(); ?>/library/images/slides/S5.png">
+                                                                </div>
+                                                            </div>
+
+
+                                                            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                                                                <i class="fa fa-angle-left"></i>
+                                                            </a>
+                                                            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                                                                <i class="fa fa-angle-right"></i>
+                                                            </a>
+                                                        </div>
+                                                        -->
+                                                    </div>
+                                                        <?php
+                                                    } else {
+                                                        if($video) { echo $video_iframe; }
+                                                        else { ?> <img src="<?php echo wp_get_attachment_url( get_post_thumbnail_id(get_the_ID()) ); ?>" /> <?php }
+                                                    }
                                                     ?>
                                                 </div>
                                             </div>
@@ -84,12 +135,43 @@ query_posts( 'post_type=features&prodotti=coo2plan&orderby=menu_order&order=ASC'
                                     <article class="col-xs-12">
                                         <div class="feature last">
                                             <?php if($parallax) { ?>
-                                                <div class="feature-bg" <?php echo $parallax_css; ?>></div>
+                                                <!--<div class="feature-bg" <?php echo $parallax_css; ?>></div>-->
+                                                <div class="featured-big-img">
+                                                    <img src="<?php echo $parallax; ?>" />
+                                                </div>
                                             <?php } ?>
                                             <div class="row">
                                                 <div class="col-xs-12">
-                                                    <div class="animation-container">
-                                                        <img src="<?php echo wp_get_attachment_url( get_post_thumbnail_id(get_the_ID()) ); ?>" />
+                                                    <div class="slider-container">
+                                                        <img src="<?php echo get_template_directory_uri(); ?>/library/images/cinemaFISSO.png">
+                                                        <!--
+                                                        <div id="desktop-carousel" class="carousel slide" data-ride="carousel">
+                                                            <ol class="carousel-indicators">
+                                                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                                                            </ol>
+
+                                                            <div class="carousel-inner">
+                                                                <div class="item active">
+                                                                    <img src="<?php echo get_template_directory_uri(); ?>/library/images/slides/D2.png">
+                                                                </div>
+                                                                <div class="item">
+                                                                    <img src="<?php echo get_template_directory_uri(); ?>/library/images/slides/D3.png">
+                                                                </div>
+                                                                <div class="item">
+                                                                    <img src="<?php echo get_template_directory_uri(); ?>/library/images/slides/D4.png">
+                                                                </div>
+                                                            </div>
+
+                                                            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                                                                <i class="fa fa-angle-left"></i>
+                                                            </a>
+                                                            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                                                                <i class="fa fa-angle-right"></i>
+                                                            </a>
+                                                        </div>
+                                                        -->
                                                     </div>
                                                     <h3><a href="http://signup.coompany.eu/" target="_blank"><?php the_title(); ?></a></h3>
                                                     <h6><?php echo get_field('caption'); ?></h6>
