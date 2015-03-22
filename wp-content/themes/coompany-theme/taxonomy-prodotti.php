@@ -26,8 +26,8 @@ query_posts( $query_string . '&orderby=menu_order&order=ASC' );
 							$parallax = get_field('parallax_img');
 							$parallax_css = 'style="background-image: url('.$parallax.');"';
 
-							$video = get_field('video') . '?autohide=1&fs=0&modestbranding=1&color=white';
-							$video_iframe = '<iframe type="text/html" width="640" height="360" src="'.$video.'" frameborder="0"></iframe>';
+							$video = get_field('video');
+							$video_iframe = '<iframe type="text/html" width="640" height="360" src="'.$video . '?autohide=1&fs=0&modestbranding=1&color=white'.'" frameborder="0"></iframe>';
 						?>
                     <?php if($index==0) : ?>
                     <div class="row">
